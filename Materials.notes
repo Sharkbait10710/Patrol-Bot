@@ -1,10 +1,21 @@
 ==Materials==
     Utilize ESP32 CAM
         *URL*: https://www.amazon.com/Aideepen-ESP32-CAM-Bluetooth-ESP32-CAM-MB-Arduino/dp/B08P2578LV/ref=sr_1_5?keywords=esp32%2Bcam&qid=1637028439&qsid=146-7781693-5699017&s=electronics&sr=1-5&sres=B081MT8973%2CB07S5PVZKV%2CB08P2578LV%2CB08MJJTFN9%2CB08GWN98RM%2CB097H2KLCH%2CB07ZF95CCP%2CB08ZS5YWCG%2CB07T2RYTJF%2CB08R8G73XH%2CB07RXPHYNM%2CB08GKLWCB7%2CB08YNF7DY1%2CB09HR5C6CN%2CB08R8FLW3H%2CB0836NNV9C%2CB08G4LB3W6%2CB0924JR8RZ%2CB08RDP8LKP%2CB092ZXT1XG&srpt=SINGLE_BOARD_COMPUTER&th=1
+        *Function*: allow real-time camera streaming over the internet 
     External Antenna:
         *URL*: https://www.amazon.com/Diymall-Antenna-Antennas-Arduino-ESP-072pcs/dp/B00ZBJNO9O/ref=sr_1_1?keywords=arduino+external+antenna&qid=1637028566&qsid=146-7781693-5699017&s=electronics&sr=1-1&sres=B00ZBJNO9O%2CB00DN3J03O%2CB08BZ8G29M%2CB088FBV6HF%2CB07R9JGLV5%2CB07JVDNDCR%2CB07MRG9RHS%2CB07H57Q1B1%2CB00LXRQY9A%2CB07BQ44CW1%2CB07ZPPJM55%2CB07G9HZ5LM%2CB07PZFV9NK%2CB07L5GPXCW%2CB00WA6JJVS%2CB07MYXG3W8%2CB08HHXFH98%2CB07CXJQGJ5%2CB0716ST3Y4%2CB07XGHP18Z&srpt=ANTENNA
-        !Significantly improves signal strength and consistency!
+        *Function*: !Significantly improves signal strength and consistency!
     Castor Wheels:
         *URL*: https://www.amazon.com/Cofufu-Plastic-Rectangle-Swivel-Caster/dp/B00F5PNISQ/ref=sr_1_1?keywords=arduino+castor+wheels&qid=1637104096&qsid=146-7781693-5699017&s=hi&sr=1-1&sres=B00F5PNISQ%2CB08M9TKGC3%2CB085RQFMYR%2CB01LWO1P2F%2CB08KR7KMQQ%2CB07MQBDPBN%2CB071GTK6NZ%2CB010SLSK48%2CB00004YOIV%2CB07R1KSK2Z%2CB08HS381FH%2CB077MQLDQS%2CB085S4LX2B%2CB01N5OF6BG%2CB07SLY8DP5%2CB082781T4S%2CB0814RNLPF%2CB07PQK27G8%2CB0719CF3RQ%2CB08BR8BFDF
-    
+        *Function*: provide more mechanical stability and balance the robot
+    MPU-6050 Accelerometer Gyroscope Module:
+        *URL*: https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B00LP25V1A/ref=sr_1_6?keywords=accelerometer&qid=1637255428&qsid=146-7781693-5699017&sr=8-6&sres=B07T2C97WN%2CB01N99BUMR%2CB01MRPKDV9%2CB00LP25V1A%2CB07PY38BCB%2CB07G21XRV6%2CB00NAY2TUC%2CB008BOPN40%2CB01BU70B64%2CB08TH9NH55%2CB007ICEJTQ%2CB07P5YZ7ZD%2CB072MN8ZRC%2CB07M98PKT4%2CB01BT4N9BC%2CB07W3S7X7W&th=1
+        *Function*: monitor yaw, pitch, and roll of robot to evaluate turning motion or inclined service
+    Greartisan DC 12V 100RPM Gear Motor:
+        *URL*: https://www.amazon.com/Greartisan-Electric-Reduction-Centric-Diameter/dp/B072R57C56/ref=sr_1_5?keywords=dc%2Bmotor&qid=1637373584&qsid=146-7781693-5699017&sr=8-5&sres=B07Q44YYKG%2CB08GPPJR1T%2CB073Q2Y3RC%2CB072R57C56%2CB08662QSZL%2CB08J45LPM2%2CB07XMFLSPB%2CB078F7M8R8%2CB015PQW8AS%2CB07PRCRV8D%2CB07JYM8H18%2CB07QMCCZN3%2CB0080DOEQU%2CB08KXY5M91%2CB01I6MDXV6%2CB081SCDFR6%2CB072R5QSRG%2CB07ZNX5MK3%2CB01M58POHF%2CB077WWS63B&th=1
+        *Function*: Rotate and translate robot
+        *Installation*: screw-in pins on side with motor shaft
+        *Capabilitiy*: At constant load, speed is proportional to voltage. At constant voltage, speed is inversely proportional to torque
+        *Note*: DRV8871 too expensive
+
     

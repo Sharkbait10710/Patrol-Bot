@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name MPU-6050)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/MPU-6050")(options "")(descr ""))
+)
