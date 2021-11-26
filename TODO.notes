@@ -1,13 +1,7 @@
 !Tasks!
-    Find L298N driver at home and evaluate it if possible
-        speed / voltage
-        consistent?
-        How much voltage will be fed to driver
     What sensors?
         tactile sensors
             pressure sensor to detect impact between robot and any objects
                 considering Sensing Resistor
-        portable ac to dc converter
-        research rechargable batteries
 
     

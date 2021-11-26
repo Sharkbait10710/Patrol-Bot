@@ -93,7 +93,7 @@ Wire Wire Line
 Wire Wire Line
 	5950 4250 5850 4250
 Text Notes 4650 5050 0    50   ~ 0
-Must have connectors for ESP \nb/c it must be removed when \nuploading since IO0, IO3, and \nIO1 must be used during \nflashing. However, during \nruntime, those pins can be \nused as outputs.
+Must have pin headers for ESP \nb/c it must be removed when \nuploading since IO0, IO3, and \nIO1 must be used during \nflashing. However, during \nruntime, those pins can be \nused as outputs.
 Wire Wire Line
 	4250 3650 4650 3650
 Wire Wire Line

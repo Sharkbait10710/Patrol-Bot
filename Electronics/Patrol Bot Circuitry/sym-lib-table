@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name MPU-6050)(type Legacy)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/MPU-6050/MPU-6050.lib")(options "")(descr ""))
+  (lib (name MP1584EN)(type Legacy)(uri ${KIPRJMOD}/MP1584EN.lib)(options "")(descr ""))
 )
