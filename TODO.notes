@@ -3,5 +3,9 @@
         tactile sensors
             pressure sensor to detect impact between robot and any objects
                 considering Sensing Resistor
+    Since I'm too unsure about using a MCP23017, I should learn more about how I2C communication works.
+    Check: https://randomnerdtutorials.com/esp32-i2c-communication-arduino-ide/ for reference
+        If not using library object, then don't have to use twoWire. Just use Wire.begin(I2C_SDA, I2C_SCL) 
+            to specify I2C communication pins where I2C_SDA and I2C_SCL are your choice of pins
 
     

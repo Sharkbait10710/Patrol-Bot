@@ -172,30 +172,6 @@ F 3 "" H 5250 4150 50  0001 L BNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4350 5800 4600 5800
-Wire Wire Line
-	4600 5800 4600 4250
-Wire Wire Line
-	4600 4250 4650 4250
-Wire Wire Line
-	4350 5700 4550 5700
-Wire Wire Line
-	4550 5700 4550 4150
-Wire Wire Line
-	4550 4150 4650 4150
-Wire Wire Line
-	4350 5500 4500 5500
-Wire Wire Line
-	4500 5500 4500 4050
-Wire Wire Line
-	4500 4050 4650 4050
-Wire Wire Line
-	4350 5400 4450 5400
-Wire Wire Line
-	4450 5400 4450 3950
-Wire Wire Line
-	4450 3950 4650 3950
-Wire Wire Line
 	4350 5300 4400 5300
 Wire Wire Line
 	4400 5300 4400 3850
@@ -231,15 +207,34 @@ F 3 "" H 4050 4600 50  0001 C CNN
 	1    4050 4600
 	-1   0    0    1   
 $EndComp
-$Comp
-L Connector_Generic:Conn_01x08 J?
-U 1 1 61A3F5ED
-P 2350 3850
-F 0 "J?" H 2430 3842 50  0000 L CNN
-F 1 "Conn_01x08" H 2430 3751 50  0000 L CNN
-F 2 "" H 2350 3850 50  0001 C CNN
-F 3 "~" H 2350 3850 50  0001 C CNN
-	1    2350 3850
-	1    0    0    -1  
-$EndComp
+NoConn ~ 3450 6600
+NoConn ~ 3550 6600
+NoConn ~ 3650 6600
+NoConn ~ 3650 4600
+NoConn ~ 3450 4600
+NoConn ~ 5850 3550
+Wire Wire Line
+	4450 5400 4450 3950
+Wire Wire Line
+	4450 3950 4650 3950
+Wire Wire Line
+	4350 5400 4450 5400
+Wire Wire Line
+	4350 5500 4500 5500
+Wire Wire Line
+	4500 5500 4500 4050
+Wire Wire Line
+	4500 4050 4650 4050
+Wire Wire Line
+	4350 5700 4550 5700
+Wire Wire Line
+	4550 5700 4550 4150
+Wire Wire Line
+	4550 4150 4650 4150
+Wire Wire Line
+	4350 5800 4600 5800
+Wire Wire Line
+	4600 5800 4600 4250
+Wire Wire Line
+	4600 4250 4650 4250
 $EndSCHEMATC
