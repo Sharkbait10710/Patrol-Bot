@@ -1,4 +1,6 @@
 (fp_lib_table
   (lib (name MPU-6050)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/MPU-6050")(options "")(descr ""))
   (lib (name MP1584EN)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/MP1584EN")(options "")(descr ""))
+  (lib (name MAX9814)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/MAX9814/MAX9814.pretty")(options "")(descr ""))
+  (lib (name ADS1115)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/ADS1115")(options "")(descr ""))
 )

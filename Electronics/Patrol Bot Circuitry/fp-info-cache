@@ -1,4 +1,4 @@
-19414466201146841
+19417742353918190
 1546216-3
 TE_1546216-3
 
@@ -6,6 +6,13 @@ TE_1546216-3
 0
 3
 3
+ADS1115
+ADS1115
+
+
+0
+1
+1
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -56223,13 +56230,20 @@ Yellow 5381 Series LED
 0
 2
 2
+MAX9814
+MAX9814
+
+
+0
+7
+5
 MP1584EN
 MP1584EN
 
 
 0
-4
-4
+8
+8
 MPU-6050
 QFN50P400X400X95-24N
 
