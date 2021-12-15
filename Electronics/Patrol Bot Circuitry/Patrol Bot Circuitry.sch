@@ -13,10 +13,6 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text Label 4550 4050 0    50   ~ 0
-3.3V
-Wire Wire Line
-	4550 4050 4450 4050
 Text Notes 3300 5300 0    50   ~ 0
 Must have pin headers for ESP \nb/c it must be removed when \nuploading since IO0, IO3, and \nIO1 must be used during \nflashing. However, during \nruntime, those pins can be \nused as outputs. Make sure\nto program pin 14 and 15\nas SDA and SCL pins.
 Text Notes 3450 4550 0    50   ~ 0
@@ -61,7 +57,7 @@ F 4 "Osepp" H 8300 4000 50  0001 L BNN "MANUFACTURER"
 $EndComp
 Text Label 3250 3650 2    50   ~ 0
 5V
-Text Label 6800 3350 0    50   ~ 0
+Text Label 6500 3350 0    50   ~ 0
 5V
 Text Label 8100 5250 2    50   ~ 0
 5V
@@ -73,94 +69,89 @@ Wire Wire Line
 $Comp
 L Device:D_Photo D?
 U 1 1 61A649FF
-P 1150 6750
-F 0 "D?" V 1050 7050 50  0000 C CNN
-F 1 "D_Photo" V 1150 7050 50  0000 C CNN
-F 2 "" H 1100 6750 50  0001 C CNN
-F 3 "~" H 1100 6750 50  0001 C CNN
-	1    1150 6750
+P 1450 6750
+F 0 "D?" V 1450 7050 50  0000 C CNN
+F 1 "D_Photo" V 1350 7050 50  0000 C CNN
+F 2 "" H 1400 6750 50  0001 C CNN
+F 3 "~" H 1400 6750 50  0001 C CNN
+	1    1450 6750
 	0    -1   -1   0   
 $EndComp
 NoConn ~ 4450 3950
-Text Notes 1700 7550 0    50   ~ 0
+Text Notes 2000 7550 0    50   ~ 0
 Connect ADDR to \nGND for address 0x48.
 $Comp
 L ADS1115:ADS1115 U?
 U 1 1 61A61430
-P 1800 6600
-F 0 "U?" H 1700 7000 50  0000 L CNN
-F 1 "ADS1115" H 1850 7000 50  0000 L CNN
-F 2 "" H 2000 6600 50  0001 C CNN
-F 3 "" H 2000 6600 50  0001 C CNN
-	1    1800 6600
+P 2100 6600
+F 0 "U?" H 2000 7000 50  0000 L CNN
+F 1 "ADS1115" H 2150 7000 50  0000 L CNN
+F 2 "" H 2300 6600 50  0001 C CNN
+F 3 "" H 2300 6600 50  0001 C CNN
+	1    2100 6600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1450 6350 1600 6350
-Text Label 1450 6350 2    50   ~ 0
-5V
+	1750 6350 1900 6350
 Text Label 4750 3850 0    50   ~ 0
 SDA
 Text Label 4750 3750 0    50   ~ 0
 SCL
 Wire Wire Line
-	1550 6550 1600 6550
+	1850 6550 1900 6550
 Wire Wire Line
-	1550 6650 1600 6650
-Text Label 1550 6550 2    50   ~ 0
+	1850 6650 1900 6650
+Text Label 1850 6550 2    50   ~ 0
 SCL
-Text Label 1550 6650 2    50   ~ 0
+Text Label 1850 6650 2    50   ~ 0
 SDA
-Text Label 1500 7150 2    50   ~ 0
+Text Label 1800 7150 2    50   ~ 0
 A2
 Text Label 5250 6150 2    50   ~ 0
 A2
 $Comp
 L Device:R R?
 U 1 1 61AA4C40
-P 1150 7100
-F 0 "R?" H 1220 7146 50  0000 L CNN
-F 1 "R" H 1220 7055 50  0000 L CNN
-F 2 "" V 1080 7100 50  0001 C CNN
-F 3 "~" H 1150 7100 50  0001 C CNN
-	1    1150 7100
+P 1450 7100
+F 0 "R?" H 1520 7146 50  0000 L CNN
+F 1 "100K" H 1520 7055 50  0000 L CNN
+F 2 "" V 1380 7100 50  0001 C CNN
+F 3 "~" H 1450 7100 50  0001 C CNN
+	1    1450 7100
 	-1   0    0    -1  
 $EndComp
-Text Label 1150 6650 2    50   ~ 0
+Text Label 1450 6650 2    50   ~ 0
 3.3V
 Text Notes 8150 7650 0    50   ~ 0
 11/27/2021\n
 Text Notes 7450 7250 0    50   ~ 0
 1
-Text Notes 1700 5750 0    50   ~ 0
+Text Notes 1700 5850 0    50   ~ 0
 See below for reference to \nESP32 with servo:\nhttps://randomnerdtutorials.com/\nesp32-cam-pan-and-tilt-2-axis/
 $Comp
 L Connector:Conn_01x03_Male J?
 U 1 1 61A5C48B
-P 2200 5200
-F 0 "J?" H 2172 5132 50  0000 R CNN
-F 1 "Servo Motor" H 2172 5223 50  0000 R CNN
-F 2 "" H 2200 5200 50  0001 C CNN
-F 3 "~" H 2200 5200 50  0001 C CNN
-	1    2200 5200
+P 2200 5300
+F 0 "J?" H 2172 5232 50  0000 R CNN
+F 1 "Servo Motor" H 2172 5323 50  0000 R CNN
+F 2 "" H 2200 5300 50  0001 C CNN
+F 3 "~" H 2200 5300 50  0001 C CNN
+	1    2200 5300
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	1850 5100 2000 5100
-Wire Wire Line
-	4550 4150 4450 4150
-Text Label 4550 4150 0    50   ~ 0
+	1850 5200 2000 5200
+Text Label 4450 4150 0    50   ~ 0
 IO3
-Text Label 1850 5100 0    50   ~ 0
+Text Label 1850 5200 0    50   ~ 0
 IO3
 Wire Wire Line
-	2000 5200 1850 5200
+	2000 5300 1850 5300
 Wire Wire Line
-	1850 5300 2000 5300
-NoConn ~ 4450 4250
+	1850 5400 2000 5400
 Wire Wire Line
-	1500 7050 1600 7050
-Text Label 1500 7050 2    50   ~ 0
+	1800 7050 1900 7050
+Text Label 1800 7050 2    50   ~ 0
 A1
 $Comp
 L Connector:Screw_Terminal_01x02 J?
@@ -243,7 +234,7 @@ F 3 "http://www.irf.com/product-info/datasheets/data/irlz44n.pdf" H 4800 2300 50
 	1    4800 2300
 	0    1    1    0   
 $EndComp
-Text Label 5150 2000 0    50   ~ 0
+Text Label 5950 2000 0    50   ~ 0
 5V
 $Comp
 L Device:R R?
@@ -310,28 +301,28 @@ F 3 "" H 4450 4350 50  0001 C CNN
 	1    4450 4350
 	1    0    0    -1  
 $EndComp
-Text Label 1850 5200 0    50   ~ 0
+Text Label 1850 5300 0    50   ~ 0
 5V
 $Comp
 L power:GND #PWR?
 U 1 1 61AEB393
-P 1850 5300
-F 0 "#PWR?" H 1850 5050 50  0001 C CNN
-F 1 "GND" H 2000 5250 50  0000 C CNN
-F 2 "" H 1850 5300 50  0001 C CNN
-F 3 "" H 1850 5300 50  0001 C CNN
-	1    1850 5300
+P 1850 5400
+F 0 "#PWR?" H 1850 5150 50  0001 C CNN
+F 1 "GND" H 2000 5350 50  0000 C CNN
+F 2 "" H 1850 5400 50  0001 C CNN
+F 3 "" H 1850 5400 50  0001 C CNN
+	1    1850 5400
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 61AEF4A9
-P 6350 5550
-F 0 "#PWR?" H 6350 5300 50  0001 C CNN
-F 1 "GND" H 6355 5377 50  0000 C CNN
-F 2 "" H 6350 5550 50  0001 C CNN
-F 3 "" H 6350 5550 50  0001 C CNN
-	1    6350 5550
+P 6500 5550
+F 0 "#PWR?" H 6500 5300 50  0001 C CNN
+F 1 "GND" H 6505 5377 50  0000 C CNN
+F 2 "" H 6500 5550 50  0001 C CNN
+F 3 "" H 6500 5550 50  0001 C CNN
+	1    6500 5550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -348,12 +339,12 @@ $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 61AF4A4A
-P 1300 6450
-F 0 "#PWR?" H 1300 6200 50  0001 C CNN
-F 1 "GND" V 1300 6250 50  0000 C CNN
-F 2 "" H 1300 6450 50  0001 C CNN
-F 3 "" H 1300 6450 50  0001 C CNN
-	1    1300 6450
+P 1600 6450
+F 0 "#PWR?" H 1600 6200 50  0001 C CNN
+F 1 "GND" V 1600 6250 50  0000 C CNN
+F 2 "" H 1600 6450 50  0001 C CNN
+F 3 "" H 1600 6450 50  0001 C CNN
+	1    1600 6450
 	0    1    -1   0   
 $EndComp
 $Comp
@@ -391,11 +382,9 @@ F 3 "" H 1500 1850 50  0001 C CNN
 $EndComp
 Text Label 2000 1950 0    50   ~ 0
 Battery
-NoConn ~ 1600 6850
+NoConn ~ 1900 6850
 NoConn ~ 6350 3750
 NoConn ~ 6350 3850
-NoConn ~ 6350 4850
-NoConn ~ 6350 4950
 NoConn ~ 5150 4450
 NoConn ~ 5150 4550
 NoConn ~ 5150 4650
@@ -406,7 +395,6 @@ NoConn ~ 5150 5050
 NoConn ~ 5150 5150
 NoConn ~ 5250 6050
 NoConn ~ 5250 6250
-NoConn ~ 5150 3550
 $Comp
 L power:PWR_FLAG #FLG?
 U 1 1 61B340C5
@@ -451,7 +439,7 @@ F 3 "" H 1000 950 50  0001 C CNN
 	1    1000 950 
 	-1   0    0    1   
 $EndComp
-Text Notes 1700 4950 0    50   ~ 0
+Text Notes 1700 5050 0    50   ~ 0
 H-Bridge that allows \nsignal amplification for\ncontrolling DC motor.
 Text Label 1500 3750 2    50   ~ 0
 5V
@@ -470,8 +458,8 @@ $Comp
 L ROB-14450:ROB-14450 U?
 U 1 1 61AEDE98
 P 2100 4150
-F 0 "U?" H 2100 4917 50  0000 C CNN
-F 1 "ROB-14450" H 2100 4826 50  0000 C CNN
+F 0 "U?" H 2450 3600 50  0000 C CNN
+F 1 "ROB-14450" H 2150 3600 50  0000 C CNN
 F 2 "MODULE_ROB-14450" H 2100 4150 50  0001 L BNN
 F 3 "" H 2100 4150 50  0001 L BNN
 F 4 "Manufacturer Recommendation" H 2100 4150 50  0001 L BNN "STANDARD"
@@ -524,17 +512,17 @@ ADC for converting sensor readings to digital signals for monitoring.
 Wire Wire Line
 	5150 4150 5050 4150
 Wire Wire Line
-	1300 6450 1300 6750
+	1600 6450 1600 6750
 Wire Wire Line
-	1600 6750 1300 6750
+	1900 6750 1600 6750
 Wire Wire Line
-	1600 6450 1300 6450
+	1900 6450 1600 6450
 Text Notes 5250 3100 0    50   ~ 0
 Provide addition GPIO pins.
 Text Notes 8300 3700 0    50   ~ 0
 Sonar sensors for providing physical space detection.
 Text Notes 5200 6950 0    50   ~ 0
-Microphone for picking up sounds\nand detecting danger.Use median \nof 10 points to produce crisper \nsound.
+Microphone for picking up sounds\nand detecting danger. Use median \nof 10 points to produce crisper \nsound.
 $Comp
 L HC-SR04:HC-SR04 U?
 U 1 1 61BA6A2B
@@ -604,22 +592,17 @@ F 3 "http://www.infineon.com/dgdl/irf4905.pdf?fileId=5546d462533600a4015355e3216
 	1    1000 3550
 	0    -1   1    0   
 $EndComp
-Wire Wire Line
-	1000 3350 1150 3350
 $Comp
 L power:+10V #PWR?
 U 1 1 61CA16C2
-P 1150 3350
-F 0 "#PWR?" H 1150 3200 50  0001 C CNN
-F 1 "+10V" H 1165 3523 50  0000 C CNN
-F 2 "" H 1150 3350 50  0001 C CNN
-F 3 "" H 1150 3350 50  0001 C CNN
-	1    1150 3350
+P 1000 3250
+F 0 "#PWR?" H 1000 3100 50  0001 C CNN
+F 1 "+10V" H 1015 3423 50  0000 C CNN
+F 2 "" H 1000 3250 50  0001 C CNN
+F 3 "" H 1000 3250 50  0001 C CNN
+	1    1000 3250
 	1    0    0    -1  
 $EndComp
-Connection ~ 1150 3350
-Wire Wire Line
-	1150 3350 1300 3350
 Text Label 800  3650 2    50   ~ 0
 Battery
 Text Notes 2850 2700 0    50   ~ 0
@@ -763,8 +746,6 @@ F 3 "" H 4800 2100 50  0001 C CNN
 	1    4800 2100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5150 2000 5050 2000
 Connection ~ 5050 2000
 Wire Wire Line
 	5050 2000 5050 2400
@@ -792,36 +773,29 @@ Wire Wire Line
 	2700 4250 3250 4250
 Wire Wire Line
 	2700 4350 3250 4350
-Wire Wire Line
-	1200 3650 1300 3650
-Wire Wire Line
-	1300 3350 1300 3650
-Connection ~ 1300 3650
-Wire Wire Line
-	1300 3650 1500 3650
 $Comp
 L power:GND #PWR?
 U 1 1 61B8FEA9
-P 1150 7250
-F 0 "#PWR?" H 1150 7000 50  0001 C CNN
-F 1 "GND" H 1155 7077 50  0000 C CNN
-F 2 "" H 1150 7250 50  0001 C CNN
-F 3 "" H 1150 7250 50  0001 C CNN
-	1    1150 7250
+P 1450 7250
+F 0 "#PWR?" H 1450 7000 50  0001 C CNN
+F 1 "GND" H 1455 7077 50  0000 C CNN
+F 2 "" H 1450 7250 50  0001 C CNN
+F 3 "" H 1450 7250 50  0001 C CNN
+	1    1450 7250
 	-1   0    0    -1  
 $EndComp
-Connection ~ 1150 7250
+Connection ~ 1450 7250
 Wire Wire Line
-	1600 7250 1150 7250
+	1900 7250 1450 7250
 Wire Wire Line
-	1600 6950 1150 6950
-Connection ~ 1150 6950
+	1900 6950 1450 6950
+Connection ~ 1450 6950
 Wire Wire Line
-	1500 7150 1600 7150
-Connection ~ 1300 6450
-Text Notes 800  3100 0    50   ~ 0
+	1800 7150 1900 7150
+Connection ~ 1600 6450
+Text Notes 800  2950 0    50   ~ 0
 Microcontroller and motor drivers for control and sensor data acquisition.
-Text Notes 850  650  0    50   ~ 0
+Text Notes 800  650  0    50   ~ 0
 Power management and battery charging circuit.
 Wire Wire Line
 	4450 3750 5150 3750
@@ -839,9 +813,6 @@ Wire Wire Line
 	6350 5150 6500 5150
 Wire Wire Line
 	6500 5150 6500 5450
-Wire Wire Line
-	6350 5350 6350 5550
-Connection ~ 6350 5550
 $Comp
 L HC-SR04:HC-SR04 U?
 U 1 1 61A38334
@@ -855,13 +826,13 @@ F 4 "Osepp" H 8300 5350 50  0001 L BNN "MANUFACTURER"
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6350 3350 6800 3350
+	6350 3350 6500 3350
 Text Label 8100 4550 2    50   ~ 0
 5V
 Wire Wire Line
-	6800 3350 6800 3900
+	6500 3350 6500 3900
 Wire Wire Line
-	6800 3900 8100 3900
+	6500 3900 8100 3900
 Wire Wire Line
 	6550 4100 8100 4100
 Wire Wire Line
@@ -873,48 +844,44 @@ Wire Wire Line
 Wire Wire Line
 	6500 5450 8100 5450
 Wire Wire Line
-	6350 5550 8100 5550
+	6500 5550 8100 5550
 Wire Wire Line
 	6350 4450 6500 4450
 Wire Wire Line
 	6500 4450 6500 4000
 Wire Wire Line
 	6500 4000 8100 4000
-Text Label 4200 6150 2    50   ~ 0
-3.3V
-Wire Wire Line
-	4700 6150 4500 6150
 $Comp
 L Device:C C?
 U 1 1 61B9B967
-P 4700 6300
-F 0 "C?" H 4500 6300 50  0000 L CNN
-F 1 "C" H 4600 6200 50  0000 L CNN
-F 2 "" H 4738 6150 50  0001 C CNN
-F 3 "~" H 4700 6300 50  0001 C CNN
-	1    4700 6300
+P 4050 6300
+F 0 "C?" H 3850 6300 50  0000 L CNN
+F 1 "470u" H 3850 6200 50  0000 L CNN
+F 2 "" H 4088 6150 50  0001 C CNN
+F 3 "~" H 4050 6300 50  0001 C CNN
+	1    4050 6300
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 61B93D2E
-P 4350 6150
-F 0 "R?" V 4450 6200 50  0000 C CNN
-F 1 "R" V 4450 6100 50  0000 C CNN
-F 2 "" V 4280 6150 50  0001 C CNN
-F 3 "~" H 4350 6150 50  0001 C CNN
-	1    4350 6150
+P 3850 6150
+F 0 "R?" V 3950 6200 50  0000 C CNN
+F 1 "30" V 3950 6100 50  0000 C CNN
+F 2 "" V 3780 6150 50  0001 C CNN
+F 3 "~" H 3850 6150 50  0001 C CNN
+	1    3850 6150
 	0    -1   1    0   
 $EndComp
 $Comp
 L power:GND #PWR?
 U 1 1 61AE8FEC
-P 5000 6450
-F 0 "#PWR?" H 5000 6200 50  0001 C CNN
-F 1 "GND" H 5005 6277 50  0000 C CNN
-F 2 "" H 5000 6450 50  0001 C CNN
-F 3 "" H 5000 6450 50  0001 C CNN
-	1    5000 6450
+P 4850 6450
+F 0 "#PWR?" H 4850 6200 50  0001 C CNN
+F 1 "GND" H 4855 6277 50  0000 C CNN
+F 2 "" H 4850 6450 50  0001 C CNN
+F 3 "" H 4850 6450 50  0001 C CNN
+	1    4850 6450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -929,17 +896,9 @@ F 3 "" H 5450 6400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4700 6150 5050 6150
+	5100 6150 5100 6350
 Wire Wire Line
-	5050 6150 5050 6350
-Wire Wire Line
-	5050 6350 5250 6350
-Connection ~ 4700 6150
-Wire Wire Line
-	4700 6450 5000 6450
-Connection ~ 5000 6450
-Wire Wire Line
-	5000 6450 5250 6450
+	5100 6350 5250 6350
 Text Notes 8350 950  0    50   ~ 0
 Accelerometer and gyroscope sensor.
 NoConn ~ 9450 1300
@@ -953,7 +912,6 @@ NoConn ~ 9450 2200
 NoConn ~ 9450 2000
 NoConn ~ 9450 1900
 NoConn ~ 9450 1800
-NoConn ~ 9450 1700
 $Comp
 L power:GND #PWR?
 U 1 1 61AE846B
@@ -988,4 +946,280 @@ Text Label 9500 1200 0    50   ~ 0
 3.3V
 Wire Wire Line
 	9500 1200 9450 1200
+Text Label 8250 2200 2    50   ~ 0
+SCL
+Text Label 8250 2300 2    50   ~ 0
+SDA
+$Comp
+L Device:R R?
+U 1 1 61F86A08
+P 6800 4850
+F 0 "R?" V 6900 4800 50  0000 C CNN
+F 1 "R" V 6900 4900 50  0000 C CNN
+F 2 "" V 6730 4850 50  0001 C CNN
+F 3 "~" H 6800 4850 50  0001 C CNN
+	1    6800 4850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6350 4850 6650 4850
+$Comp
+L Device:LED D?
+U 1 1 61F8AE58
+P 7100 4850
+F 0 "D?" H 7150 4950 50  0000 C CNN
+F 1 "LED" H 7000 4950 50  0000 C CNN
+F 2 "" H 7100 4850 50  0001 C CNN
+F 3 "~" H 7100 4850 50  0001 C CNN
+	1    7100 4850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7250 4850 7500 4850
+Connection ~ 8100 4850
+$Comp
+L Device:C C?
+U 1 1 61F8FB1D
+P 5150 2150
+F 0 "C?" H 5265 2196 50  0000 L CNN
+F 1 "20n" H 5200 2050 50  0000 L CNN
+F 2 "" H 5188 2000 50  0001 C CNN
+F 3 "~" H 5150 2150 50  0001 C CNN
+	1    5150 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 5350 6450 5350
+Wire Wire Line
+	6450 5350 6450 5550
+Wire Wire Line
+	6450 5550 6500 5550
+Connection ~ 6500 5550
+$Comp
+L Device:C C?
+U 1 1 61F9E27C
+P 5450 2150
+F 0 "C?" H 5565 2196 50  0000 L CNN
+F 1 "20n" H 5500 2050 50  0000 L CNN
+F 2 "" H 5488 2000 50  0001 C CNN
+F 3 "~" H 5450 2150 50  0001 C CNN
+	1    5450 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 61F9E4C9
+P 5750 2150
+F 0 "C?" H 5865 2196 50  0000 L CNN
+F 1 "20n" H 5800 2050 50  0000 L CNN
+F 2 "" H 5788 2000 50  0001 C CNN
+F 3 "~" H 5750 2150 50  0001 C CNN
+	1    5750 2150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5050 2000 5150 2000
+Connection ~ 5150 2000
+Wire Wire Line
+	5150 2000 5450 2000
+Connection ~ 5450 2000
+Wire Wire Line
+	5450 2000 5750 2000
+Connection ~ 5750 2000
+Wire Wire Line
+	5750 2000 5950 2000
+Wire Wire Line
+	5150 2300 5450 2300
+Wire Wire Line
+	5750 2300 5450 2300
+Connection ~ 5450 2300
+$Comp
+L power:GND #PWR?
+U 1 1 61FAD25D
+P 5450 2300
+F 0 "#PWR?" H 5450 2050 50  0001 C CNN
+F 1 "GND" H 5455 2127 50  0000 C CNN
+F 2 "" H 5450 2300 50  0001 C CNN
+F 3 "" H 5450 2300 50  0001 C CNN
+	1    5450 2300
+	1    0    0    -1  
+$EndComp
+Text Notes 5200 1900 0    50   ~ 0
+Decouples MCU.\n
+$Comp
+L Device:C C?
+U 1 1 61FAE8D1
+P 1450 3250
+F 0 "C?" V 1500 3150 50  0000 C CNN
+F 1 "20n" V 1500 3400 50  0000 C CNN
+F 2 "" H 1488 3100 50  0001 C CNN
+F 3 "~" H 1450 3250 50  0001 C CNN
+	1    1450 3250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1200 3650 1300 3650
+$Comp
+L Device:C C?
+U 1 1 61FB65F1
+P 1450 3450
+F 0 "C?" V 1500 3350 50  0000 C CNN
+F 1 "20n" V 1500 3600 50  0000 C CNN
+F 2 "" H 1488 3300 50  0001 C CNN
+F 3 "~" H 1450 3450 50  0001 C CNN
+	1    1450 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 61FB6923
+P 1450 3050
+F 0 "C?" V 1500 2950 50  0000 C CNN
+F 1 "20n" V 1500 3200 50  0000 C CNN
+F 2 "" H 1488 2900 50  0001 C CNN
+F 3 "~" H 1450 3050 50  0001 C CNN
+	1    1450 3050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1000 3250 1000 3350
+Wire Wire Line
+	1300 3050 1300 3250
+Connection ~ 1300 3250
+Wire Wire Line
+	1300 3250 1300 3450
+Wire Wire Line
+	1600 3050 1750 3050
+Wire Wire Line
+	1750 3050 1750 3250
+Wire Wire Line
+	1750 3450 1600 3450
+Wire Wire Line
+	1600 3250 1750 3250
+Connection ~ 1750 3250
+Wire Wire Line
+	1750 3250 1750 3450
+$Comp
+L power:GND #PWR?
+U 1 1 61FD5368
+P 1900 3250
+F 0 "#PWR?" H 1900 3000 50  0001 C CNN
+F 1 "GND" H 2050 3150 50  0000 C CNN
+F 2 "" H 1900 3250 50  0001 C CNN
+F 3 "" H 1900 3250 50  0001 C CNN
+	1    1900 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1900 3250 1750 3250
+Wire Wire Line
+	1300 3250 1000 3250
+Connection ~ 1000 3250
+Wire Wire Line
+	1300 3450 1300 3650
+Connection ~ 1300 3450
+Connection ~ 1300 3650
+Wire Wire Line
+	1300 3650 1500 3650
+Text Label 4450 4250 0    50   ~ 0
+IO1
+Text Label 9450 1700 0    50   ~ 0
+IO1
+Text Notes 8350 3100 0    50   ~ 0
+Must initialize !O1 \npin as interrupt.\n
+Text Label 5150 3550 2    50   ~ 0
+5V
+$Comp
+L Device:R R?
+U 1 1 61BA8EFE
+P 6800 5100
+F 0 "R?" V 6900 5050 50  0000 C CNN
+F 1 "R" V 6900 5150 50  0000 C CNN
+F 2 "" V 6730 5100 50  0001 C CNN
+F 3 "~" H 6800 5100 50  0001 C CNN
+	1    6800 5100
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:LED D?
+U 1 1 61BA92C2
+P 7100 5100
+F 0 "D?" H 7150 5200 50  0000 C CNN
+F 1 "LED" H 7000 5200 50  0000 C CNN
+F 2 "" H 7100 5100 50  0001 C CNN
+F 3 "~" H 7100 5100 50  0001 C CNN
+	1    7100 5100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7250 5100 7500 5100
+Wire Wire Line
+	7500 5100 7500 4850
+Connection ~ 7500 4850
+Wire Wire Line
+	7500 4850 8100 4850
+Wire Wire Line
+	6350 4950 6650 4950
+Wire Wire Line
+	6650 4950 6650 5100
+Text Notes 7350 5200 0    50   ~ 0
+DEBUG LEDs\n
+$Comp
+L Regulator_Linear:LM2931-3.3_TO220 U?
+U 1 1 61BB7E97
+P 4500 6150
+F 0 "U?" H 4500 6392 50  0000 C CNN
+F 1 "LM2931-3.3_TO220" H 4500 6301 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 4500 6375 50  0001 C CIN
+F 3 "https://www.ti.com/lit/ds/symlink/lm2931-n.pdf" H 4500 6100 50  0001 C CNN
+	1    4500 6150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 6150 4050 6150
+$Comp
+L Device:C C?
+U 1 1 61BC7EBA
+P 4850 6300
+F 0 "C?" H 4650 6300 50  0000 L CNN
+F 1 "470u" H 4650 6200 50  0000 L CNN
+F 2 "" H 4888 6150 50  0001 C CNN
+F 3 "~" H 4850 6300 50  0001 C CNN
+	1    4850 6300
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 6150 4850 6150
+Connection ~ 4850 6150
+Wire Wire Line
+	4850 6150 5100 6150
+Connection ~ 4850 6450
+Wire Wire Line
+	4850 6450 5250 6450
+Wire Wire Line
+	4500 6450 4850 6450
+Connection ~ 4050 6150
+Wire Wire Line
+	4050 6150 4200 6150
+Wire Wire Line
+	4050 6450 4500 6450
+Connection ~ 4500 6450
+Text Label 3700 6150 2    50   ~ 0
+5V
+$Comp
+L Device:C C?
+U 1 1 61C1ABD0
+P 1050 7100
+F 0 "C?" H 850 7100 50  0000 L CNN
+F 1 "0.1u" H 850 7000 50  0000 L CNN
+F 2 "" H 1088 6950 50  0001 C CNN
+F 3 "~" H 1050 7100 50  0001 C CNN
+	1    1050 7100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1050 6950 1450 6950
+Wire Wire Line
+	1050 7250 1450 7250
+NoConn ~ 4450 4050
 $EndSCHEMATC
