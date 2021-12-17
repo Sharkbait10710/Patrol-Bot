@@ -10,4 +10,6 @@
   (lib (name 62409-1)(type KiCad)(uri ${KICAD_SYMBOL_DIR}/62409-1)(options "")(descr ""))
   (lib (name SparkFun_Motor_Driver-TB6612FNG)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/TB6612FNG/SparkFun_Motor_Driver-TB6612FNG.pretty")(options "")(descr ""))
   (lib (name ROB-14450)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/ROB-14450")(options "")(descr ""))
+  (lib (name MCP23017)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/MCP23017")(options "")(descr ""))
+  (lib (name HC-SRO4)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/HC-SRO4")(options "")(descr ""))
 )

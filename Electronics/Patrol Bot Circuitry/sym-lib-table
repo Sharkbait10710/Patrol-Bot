@@ -12,4 +12,5 @@
   (lib (name 62409-1)(type Legacy)(uri ${KICAD_SYMBOL_DIR}/62409-1/62409-1.lib)(options "")(descr ""))
   (lib (name ESP32-CAM)(type Legacy)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/ESP-32-CAM/ESP32-CAM.lib")(options "")(descr ""))
   (lib (name SparkFun_Motor_Driver-TB6612FNG-eagle-import)(type Legacy)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/TB6612FNG/SparkFun_Motor_Driver-TB6612FNG-eagle-import.lib")(options "")(descr ""))
+  (lib (name lm2931_input_3.3)(type Legacy)(uri C:/Users/DangL/Downloads/lm2931_input_3.3.lib)(options "")(descr ""))
 )
