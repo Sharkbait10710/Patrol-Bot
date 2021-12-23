@@ -16,7 +16,7 @@
         *URL*: https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B00LP25V1A/ref=sr_1_6?keywords=accelerometer&qid=1637255428&qsid=146-7781693-5699017&sr=8-6&sres=B07T2C97WN%2CB01N99BUMR%2CB01MRPKDV9%2CB00LP25V1A%2CB07PY38BCB%2CB07G21XRV6%2CB00NAY2TUC%2CB008BOPN40%2CB01BU70B64%2CB08TH9NH55%2CB007ICEJTQ%2CB07P5YZ7ZD%2CB072MN8ZRC%2CB07M98PKT4%2CB01BT4N9BC%2CB07W3S7X7W&th=1
         *Function*: monitor yaw, pitch, and roll of robot to evaluate turning motion or inclined surface
     Greartisan DC 12V 100RPM Gear Motor:
-        *URL*: https://www.amazon.com/Greartisan-Electric-Reduction-Centric-Diameter/dp/B072R57C56/ref=sr_1_5?keywords=dc%2Bmotor&qid=1637373584&qsid=146-7781693-5699017&sr=8-5&sres=B07Q44YYKG%2CB08GPPJR1T%2CB073Q2Y3RC%2CB072R57C56%2CB08662QSZL%2CB08J45LPM2%2CB07XMFLSPB%2CB078F7M8R8%2CB015PQW8AS%2CB07PRCRV8D%2CB07JYM8H18%2CB07QMCCZN3%2CB0080DOEQU%2CB08KXY5M91%2CB01I6MDXV6%2CB081SCDFR6%2CB072R5QSRG%2CB07ZNX5MK3%2CB01M58POHF%2CB077WWS63B&th=1
+        *URL*: https://www.amazon.com/Greartisan-Electric-Reduction-Eccentric-Diameter/dp/B0721T1PXQ/ref=sr_1_9?crid=352XRVMPN5SYB&keywords=9V%2Bdc%2Bmotor&qid=1640131145&s=hi&sprefix=9v%2Bdc%2Bmotor%2Ctools%2C156&sr=1-9&th=1
         *Function*: Rotate and translate robot
         *Installation*: screw-in pins on side with motor shaft
         *Capabilitiy*: At constant load, speed is proportional to voltage. At constant voltage, speed is inversely proportional to torque
@@ -50,4 +50,15 @@
     MAX9814 Microphone: 
         *URL*: https://www.amazon.com/Aokin-MAX9814-Electret-Microphone-Amplifier/dp/B07V723WBL/ref=sr_1_2?keywords=max9814&qid=1638045867&qsid=146-7781693-5699017&sr=8-2&sres=B07V723WBL%2CB07YJ1KK6Z%2CB08JHWSX2C%2CB08GP42PJQ%2CB07DJWQDQF%2CB01G1FKH78%2CB08HSJ82ZZ%2CB08MYVL2FT%2CB07KDQLCNS%2CB07M9FNDNT%2CB08KZWRMB1%2CB0716XRBSY%2CB09LCFHGMB%2CB07PWBXHV9%2CB07GZGBJZM%2CB08TTM371D
         *Note*: Use filter circuit with low dropout regulator to reduce noise in power supply; more references at https://www.youtube.com/watch?v=pPh3_ciEmzs
-    
+    MP1584EN:
+        *URL*: https://www.amazon.com/MP1584EN-DC-DC-Converter-Adjustable-Module/dp/B08247LRYS/ref=sr_1_5?crid=3RUKJUDBTX233&keywords=MP1584EN&qid=1640202736&s=electronics&sprefix=mp1584en%2Celectronics%2C192&sr=1-5
+        *Note*: Buck Converter
+    Battery Holder:
+        *URL*: https://www.amazon.com/Thicken-Battery-Holder-Standard-Connector/dp/B07WP1CYYW/ref=sr_1_4?keywords=8+x+aa+battery+holder&qid=1640213768&sr=8-4
+    Ball Bearings:
+        *URL*: https://www.amazon.com/Bearings-Skateboard-Shielded-Miniature-Skateboards/dp/B07R7PR72H/ref=sr_1_2?crid=1O97DTMB31YEG&keywords=bearings&qid=1640220038&sprefix=bearings%2Caps%2C195&sr=8-2
+    Standoffs:
+        *URL*: https://www.amazon.com/HONJIE-Female-Hexagon-Standoff-Pillars/dp/B07Y1KXSM2/ref=sr_1_4?crid=X1CT6UQK2R5H&keywords=M4+standoff&qid=1640225564&sprefix=m4+standoff%2Caps%2C129&sr=8-4
+        *Note*: Male-Female
+    M2 nuts and bolts:
+        *URL*: https://www.amazon.com/DYWISHKEY-Pieces-Stainless-Button-Screws/dp/B07W5HBRMP/ref=sr_1_1?crid=2BHAQNQX3KSRV&keywords=M2+bolts+not+nuts&qid=1640231021&sprefix=m2+bolts+not+nut%2Caps%2C149&sr=8-1

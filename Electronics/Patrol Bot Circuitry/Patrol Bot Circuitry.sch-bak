@@ -265,17 +265,6 @@ F 3 "" H 1500 1950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR018
-U 1 1 61AE7216
-P 3250 3750
-F 0 "#PWR018" H 3250 3500 50  0001 C CNN
-F 1 "GND" V 3255 3622 50  0000 R CNN
-F 2 "" H 3250 3750 50  0001 C CNN
-F 3 "" H 3250 3750 50  0001 C CNN
-	1    3250 3750
-	0    1    1    0   
-$EndComp
-$Comp
 L power:GND #PWR011
 U 1 1 61AEB393
 P 1850 5400
@@ -1232,4 +1221,5 @@ Text Label 1850 5300 0    50   ~ 0
 5V
 Text Label 2000 1950 0    50   ~ 0
 Battery
+NoConn ~ 3250 3750
 $EndSCHEMATC
