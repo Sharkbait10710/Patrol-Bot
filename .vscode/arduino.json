@@ -1,4 +1,5 @@
 {
-    "configuration": "cpu=atmega2560",
-    "board": "arduino:avr:mega"
+    "configuration": "CPUFreq=240,FlashMode=qio,FlashFreq=80",
+    "board": "esp32:esp32:esp32cam",
+    "sketch": "Software\\Patrol Bot Arduino Program\\Bot\\Bot.ino"
 }

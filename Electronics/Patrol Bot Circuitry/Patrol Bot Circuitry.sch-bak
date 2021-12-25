@@ -43,34 +43,11 @@ F 6 "Microchip" H 5750 4350 50  0001 L BNN "MF"
 	1    5750 4350
 	1    0    0    -1  
 $EndComp
-$Comp
-L HC-SR04:HC-SR04 U8
-U 1 1 61A3787B
-P 8300 4000
-F 0 "U8" H 8300 4200 50  0000 L CNN
-F 1 "HC-SR04" H 8450 4200 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 8300 4000 50  0001 L BNN
-F 3 "" H 8300 4000 50  0001 L BNN
-F 4 "Osepp" H 8300 4000 50  0001 L BNN "MANUFACTURER"
-	1    8300 4000
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	5150 4050 5150 4150
 Connection ~ 5150 4150
 Wire Wire Line
 	5150 4150 5150 4250
-$Comp
-L Device:D_Photo D1
-U 1 1 61A649FF
-P 1450 6750
-F 0 "D1" V 1450 7050 50  0000 C CNN
-F 1 "D_Photo" V 1350 7050 50  0000 C CNN
-F 2 "OptoDevice:R_LDR_4.9x4.2mm_P2.54mm_Vertical" H 1400 6750 50  0001 C CNN
-F 3 "~" H 1400 6750 50  0001 C CNN
-	1    1450 6750
-	0    -1   -1   0   
-$EndComp
 Text Notes 2000 7550 0    50   ~ 0
 Connect ADDR to \nGND for address 0x48.
 $Comp
@@ -370,7 +347,6 @@ F 6 "Sparkfun Electronics" H 2100 4150 50  0001 L BNN "MANUFACTURER"
 	1    2100 4150
 	-1   0    0    -1  
 $EndComp
-NoConn ~ 2700 4000
 $Comp
 L Connector:Screw_Terminal_01x02 J1
 U 1 1 61B09526
@@ -555,7 +531,7 @@ $Comp
 L MP1584EN:MP1584EN U3
 U 1 1 619EC2A4
 P 3450 2100
-F 0 "U3" H 3650 1800 50  0000 C CNN
+F 0 "U3" H 3700 1800 50  0000 C CNN
 F 1 "MP1584EN" H 3400 1800 50  0000 C CNN
 F 2 "MP1584EN:MP1584EN" H 3450 2100 50  0001 C CNN
 F 3 "" H 3450 2100 50  0001 C CNN
@@ -729,10 +705,6 @@ F 4 "Osepp" H 8300 5350 50  0001 L BNN "MANUFACTURER"
 $EndComp
 Wire Wire Line
 	6350 3350 6500 3350
-Wire Wire Line
-	6500 3350 6500 3900
-Wire Wire Line
-	6500 3900 8100 3900
 Wire Wire Line
 	6550 4100 8100 4100
 Wire Wire Line
@@ -1019,8 +991,6 @@ Wire Wire Line
 	1300 3650 1500 3650
 Text Label 4450 4250 0    50   ~ 0
 IO1
-Text Label 9450 1700 0    50   ~ 0
-IO1
 Text Notes 8350 3100 0    50   ~ 0
 Must initialize IO1 \npin as interrupt.\n
 $Comp
@@ -1080,21 +1050,6 @@ Wire Wire Line
 Connection ~ 4050 6150
 Wire Wire Line
 	4050 6150 4200 6150
-$Comp
-L Device:C C1
-U 1 1 61C1ABD0
-P 1050 7100
-F 0 "C1" H 850 7100 50  0000 L CNN
-F 1 "0.1u" H 850 7000 50  0000 L CNN
-F 2 "Capacitor_THT:CP_Axial_L10.0mm_D4.5mm_P15.00mm_Horizontal" H 1088 6950 50  0001 C CNN
-F 3 "~" H 1050 7100 50  0001 C CNN
-	1    1050 7100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1050 6950 1450 6950
-Wire Wire Line
-	1050 7250 1450 7250
 NoConn ~ 4450 4050
 Wire Wire Line
 	2000 1400 2000 1300
@@ -1193,17 +1148,9 @@ Wire Wire Line
 	4850 6150 5100 6150
 Text Label 4850 6150 0    50   ~ 0
 3.3V
-Text Label 1450 6600 2    50   ~ 0
-3.3V
-Wire Wire Line
-	1450 6650 1450 6600
 Text Label 5950 2000 0    50   ~ 0
 5V
-Text Label 1500 3750 2    50   ~ 0
-5V
 Text Label 3250 3650 2    50   ~ 0
-5V
-Text Label 6500 3350 2    50   ~ 0
 5V
 Text Label 8100 4550 2    50   ~ 0
 5V
@@ -1222,4 +1169,42 @@ Text Label 1850 5300 0    50   ~ 0
 Text Label 2000 1950 0    50   ~ 0
 Battery
 NoConn ~ 3250 3750
+$Comp
+L HC-SR04:HC-SR04 U8
+U 1 1 61A3787B
+P 8300 4000
+F 0 "U8" H 8300 4200 50  0000 L CNN
+F 1 "HC-SR04" H 8450 4200 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 8300 4000 50  0001 L BNN
+F 3 "" H 8300 4000 50  0001 L BNN
+F 4 "Osepp" H 8300 4000 50  0001 L BNN "MANUFACTURER"
+	1    8300 4000
+	1    0    0    -1  
+$EndComp
+Text Label 1500 3750 2    50   ~ 0
+3.3V
+NoConn ~ 9450 1700
+Text Label 2700 4000 0    50   ~ 0
+IO1
+Text Label 6500 3350 2    50   ~ 0
+5V
+Wire Wire Line
+	6500 3350 6500 3900
+Wire Wire Line
+	6500 3900 8100 3900
+Wire Wire Line
+	1450 6650 1450 6600
+Text Label 1450 6600 2    50   ~ 0
+3.3V
+$Comp
+L Device:D_Photo D1
+U 1 1 61A649FF
+P 1450 6750
+F 0 "D1" V 1500 6700 50  0000 C CNN
+F 1 "D_Photo" V 1500 7050 50  0000 C CNN
+F 2 "OptoDevice:R_LDR_4.9x4.2mm_P2.54mm_Vertical" H 1400 6750 50  0001 C CNN
+F 3 "~" H 1400 6750 50  0001 C CNN
+	1    1450 6750
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC
