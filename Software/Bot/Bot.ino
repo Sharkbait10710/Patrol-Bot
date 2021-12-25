@@ -25,36 +25,40 @@ void DualTaskcode( void * pvParameters ){
 
   for(;;){
     handle_Motor(input_Spd[0], input_Spd[1]); 
-    String IMU_data = get_Pos_Rot();
+    update_Pos_Rot();
+    update_ADS();
+    update_SONAR_DATA();
     delay(10);
   }
 }
 
 //WSHandler
 void evaluateWSMsg(String& str) {
-  if (Capt_Reg("GET_IMU", *str)) {
-    USE_SERIAL.println("Turn stepper 1 OFF Continuously");
+  if (Capt_Reg("GET_IMU", str)) {
+    webSocket.sendTXT(IMU_DATA);
+    USE_SERIAL.println(IMU_DATA);
   }
-  else if (Capt_Reg("GET_LUMOSITY", *str)) {
-    USE_SERIAL.println("Turn stepper 1 CC Continuously");
+  else if (Capt_Reg("GET_ADS", str)) {
+    webSocket.sendTXT(ADS_DATA);
+    USE_SERIAL.println(IMU_DATA);
   }
-  else if (Capt_Reg("GET_BAT_VOLT", *str)) {
-    USE_SERIAL.println("Turn stepper 1 C Continuously");
+  else if (Capt_Reg("GET_SONAR", str)) {
+    webSocket.sendTXT(SONAR_DATA);
+    USE_SERIAL.println(SONAR_DATA);
   }
-  else if (Capt_Reg("GET_MIC", *str)) {
-    USE_SERIAL.println("Turn stepper 2 OFF Continuously");
+  else if (Capt_Reg("LEFT_MOTOR", str)) {
+    flush_Data();
+    //Specify regex and extract data
   }
-  else if (Capt_Reg("GET_SONAR1", *str)) {
-    USE_SERIAL.println("Turn stepper 2 CC Continuously");
+  else if (Capt_Reg("RIGHT_MOTOR", str)) {
+    flush_Data();
+    //Specify regex and extract data
   }
-  else if (Capt_Reg("GET_SONAR2", *str)) {
-    USE_SERIAL.println("Turn stepper 2 C Continuously");
+  else if (Capt_Reg("RIGHT_MOTOR", str)) {
+    flush_Data();
+    //Specify regex and extract data
   }
-  else if (Capt_Reg("GET_SONAR3", *str)) {
-    servo_pos = str.substring(16,str.length()).toInt();
-    USE_SERIAL.println("Adjust servo to " + str.substring(16,str.length()));
-  }
-
+  flush_Data();
   str = "";
 }
 
@@ -82,6 +86,6 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
+  webSocket.loop();
+  evaluateWSMsg(WSMsg);
 }

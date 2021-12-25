@@ -9,6 +9,8 @@ float delta_V[3] = {0, 0, 0}; //Velocity: x | y | z
 float delta_S[3] = {0, 0, 0}; //Position
 float delta_O[3] = {0, 0, 0}; //Ang Vel 
 float delta_R[3] = {0, 0, 0}; //Rotation
+String IMU_DATA = "";
+
 void MPU_setup(TwoWire T) {
   if (!MPU.begin(MPUaddr, &T)) {} //Confirm Connection
   MPU.setAccelerometerRange(MPU6050_RANGE_8_G);
@@ -35,11 +37,11 @@ void poll() {
 
 int get_Temp() {return temp.temperature;}
 
-String get_Pos_Rot() {
+void update_Pos_Rot() {
   poll();
   String ret = "";
   for (int i = 0; i < 3; i++) 
-    ret += String(delta_S[i]) + "." + String(delta_R[i]) + ".";
-  return ret;
+    ret += String(delta_S[i]) + "|" + String(delta_R[i]) + "|";
+  IMU_DATA = ret;
 }
 #endif

@@ -14,6 +14,9 @@
 Adafruit_MCP23X17 MCP;
 uint8_t MCPaddr = 0x20;
 
+float Sonar[3] = {0, 0, 0};
+String SONAR_DATA = "";
+
 void MCP_setup(TwoWire T) {
   if (!MCP.begin_I2C(MCPaddr, &T)) {} //Confirm Connection
   MCP.pinMode(MCP_S1_Trig, OUTPUT); 
@@ -24,31 +27,41 @@ void MCP_setup(TwoWire T) {
   MCP.pinMode(MCP_S3_Echo, INPUT);
 }
 
-float read_S1() { //Distance in cm
+void update_S1() { //Distance in cm
   digitalWrite(MCP_S1_Trig, LOW);
   delayMicroseconds(2);
   digitalWrite(MCP_S1_Trig, HIGH);
   delayMicroseconds(10);
   digitalWrite(MCP_S1_Trig, LOW);
-  return pulseIn(MCP_S1_Echo, HIGH)*0.034/2;
+  Sonar[0] = pulseIn(MCP_S1_Echo, HIGH)*0.034/2;
 }
 
-float read_S2() { //Distance in cm
+void update_S2() { //Distance in cm
   digitalWrite(MCP_S2_Trig, LOW);
   delayMicroseconds(2);
   digitalWrite(MCP_S2_Trig, HIGH);
   delayMicroseconds(10);
   digitalWrite(MCP_S2_Trig, LOW);
-  return pulseIn(MCP_S2_Echo, HIGH)*0.034/2;
+  Sonar[1] = pulseIn(MCP_S2_Echo, HIGH)*0.034/2;
 }
 
-float read_S3() { //Distance in cm
+void update_S3() { //Distance in cm
   digitalWrite(MCP_S3_Trig, LOW);
   delayMicroseconds(2);
   digitalWrite(MCP_S3_Trig, HIGH);
   delayMicroseconds(10);
   digitalWrite(MCP_S3_Trig, LOW);
-  return pulseIn(MCP_S3_Echo, HIGH)*0.034/2;
+  Sonar[2] = pulseIn(MCP_S3_Echo, HIGH)*0.034/2;
+}
+
+void update_SONAR_DATA() {
+  update_S1();
+  update_S2();
+  update_S3();
+  String ret = "";
+  for (int i = 0; i < 3; i++) 
+    ret += String(Sonar[i]) + "|";
+  SONAR_DATA = ret;
 }
 
 void flash_LED_1(int T) {

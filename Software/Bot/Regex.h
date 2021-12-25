@@ -31,9 +31,12 @@ void match_callback  (const char * match,          // matching string (not null-
 
 }  // end of match_callback 
 
-bool Capt_Reg(String Lua_Regex, String str) {
+bool Capt_Reg(const char* Lua_Regex, String str) {
   if (!flush) {
-    MatchState ms(str.toCharArray(buf, sizeof(str)));
+    unsigned int Size = sizeof(str);
+    char buf[Size];
+    str.toCharArray(buf, Size);
+    MatchState ms(buf, Size);
     ms.GlobalMatch(Lua_Regex, match_callback);
     if (Data.empty()) return false;
     flush = true;
@@ -54,4 +57,8 @@ String get_Data() {
   return "Data has flushed";
 }
 
+void flush_Data() {
+  while (!Data.empty()) Data.pop_back();
+  flush = false;
+}
 #endif
