@@ -125,7 +125,8 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     //Let the user know that WS is connected
     case WStype_CONNECTED: {
       USE_SERIAL.printf("[WSc] Connected to url: %s\n", payload);
-      StaticJsonDocument<2> ESP32_Profile; //Change size depending on how much data you want to send
+      StaticJsonDocument<3> ESP32_Profile; //Change size depending on how much data you want to send
+      ESP32_Profile["type"] = "master-device";
       ESP32_Profile["name"] = "ESP32-CAM";
       ESP32_Profile["message"] = "trying to connect...";
       char Txt[50]; serializeJson(ESP32_Profile, Txt);

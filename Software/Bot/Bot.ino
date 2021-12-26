@@ -53,10 +53,11 @@ void evaluateWSMsg(String& str) {
   }  
   if (server_JSON["instruction"] == "N/A") {}
   else if (server_JSON["instruction"] == "LEFT_MOTOR") {
-  input_Spd[0] = server_JSON["LEFT_MOTOR_SPEED"];
+  input_Spd[0] = static_cast<int>(server_JSON["LEFT_MOTOR_SPEED"]);
+
   }
   else if (server_JSON["instruction"] == "RIGHT_MOTOR") {
-  input_Spd[1] = server_JSON["RIGHT_MOTOR_SPEED"];
+  input_Spd[1] = static_cast<int>(server_JSON["RIGHT_MOTOR_SPEED"]);
   }
 
   str = "";

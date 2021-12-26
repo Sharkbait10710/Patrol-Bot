@@ -16,7 +16,7 @@ Adafruit_MCP23X17 MCP;
 uint8_t MCPaddr = 0x20;
 
 float Sonar[3] = {0, 0, 0};
-StaticJsonDocument<3> Sonar_Data; //Change size depending on how much data you want to send
+StaticJsonDocument<5> Sonar_Data; //Change size depending on how much data you want to send
 char Sonar_Json[100]; 
 
 void MCP_setup(TwoWire T) {
@@ -27,6 +27,8 @@ void MCP_setup(TwoWire T) {
   MCP.pinMode(MCP_S2_Echo, INPUT);
   MCP.pinMode(MCP_S3_Trig, OUTPUT); 
   MCP.pinMode(MCP_S3_Echo, INPUT);
+  Sonar_Data["type"] = "sensor";
+  Sonar_Data["name"] = "Sonar";
 }
 
 void update_S1() { //Distance in cm

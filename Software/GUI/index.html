@@ -1,37 +1,16 @@
-<!-- "<html>
-    <head>
-        <title> WebSockets Client</title>
-        <script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>
-    </head>
-    <body>
-        <img id='live' src=''>
-    </body>
-</html>
 
-<script>
-    jQuery(function($){
-        if (!('WebSocket' in window)) {
-            alert('Your browser does not support web sockets');
-        }
-        else{
-            setup();
-        }
-        function setup(){
-            var host = 'ws://server_ip:81';
-            var socket = new WebSocket(host);
-            socket.binaryType = 'arraybuffer';
-            if(socket){
-                socket.onopen = function(){}
-                socket.onmessage = function(msg){
-                    var bytes = new Uint8Array(msg.data);
-                    var binary= '';
-                    var len = bytes.byteLength;
-                    for (var i = 0; i < len; i++) binary += String.fromCharCode(bytes[i]);
-                    var img = document.getElementById('live');
-                    img.src = 'data:image/jpg;base64,'+window.btoa(binary);
-                }
-                socket.onclose = function(){showServerResponse('The connection has been closed.');}
-            }
-        }
-    });
-</script>" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Patrol-Bot GUI</title>
+</head>
+<body>
+    <!-- START THE NAVBAR SECTION -->
+    <h1>Patrol-Bot GUI</h1>
+    <script src="assets/js/bootstrap.bundle.js"></script>
+</body>
+</html>

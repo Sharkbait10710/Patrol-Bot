@@ -6,10 +6,12 @@
 Adafruit_ADS1115 ADS;
 uint8_t ADSaddr = 0x48;
 float ADS_DATA[3] = {0, 0, 0};
-StaticJsonDocument<3> ADS_Data; //Change size depending on how much data you want to send
+StaticJsonDocument<5> ADS_Data; //Change size depending on how much data you want to send
 char ADS_Json[100]; 
 void ADS_Setup(TwoWire T) {
   if (!ADS.begin(ADSaddr, &T)) {} //Confirm Connection
+  ADS_Data["type"] = "sensor";
+  ADS_Data["name"] = "ADS";
 }
 
 void update_Lumosity() {
