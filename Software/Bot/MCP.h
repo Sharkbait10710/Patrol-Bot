@@ -1,6 +1,7 @@
 #ifndef MCP_H
 #define MCP_H
 #include <Adafruit_MCP23X17.h>
+#include <ArduinoJson.h>
 
 #define MCP_S1_Trig 8 
 #define MCP_S1_Echo 9
@@ -15,7 +16,8 @@ Adafruit_MCP23X17 MCP;
 uint8_t MCPaddr = 0x20;
 
 float Sonar[3] = {0, 0, 0};
-String SONAR_DATA = "";
+StaticJsonDocument<3> Sonar_Data; //Change size depending on how much data you want to send
+char Sonar_Json[100]; 
 
 void MCP_setup(TwoWire T) {
   if (!MCP.begin_I2C(MCPaddr, &T)) {} //Confirm Connection
@@ -58,10 +60,10 @@ void update_SONAR_DATA() {
   update_S1();
   update_S2();
   update_S3();
-  String ret = "";
-  for (int i = 0; i < 3; i++) 
-    ret += String(Sonar[i]) + "|";
-  SONAR_DATA = ret;
+  Sonar_Data["Sonar_1"] = Sonar[0];
+  Sonar_Data["Sonar_2"] = Sonar[1];
+  Sonar_Data["Sonar_3"] = Sonar[2];
+  serializeJson(Sonar_Data, Sonar_Json);
 }
 
 void flash_LED_1(int T) {

@@ -1,11 +1,13 @@
 #ifndef ADS1115_H
 #define ADS1115_H
 #include <Adafruit_ADS1X15.h>
+#include <ArduinoJson.h>
 
 Adafruit_ADS1115 ADS;
 uint8_t ADSaddr = 0x48;
-float ADS_data[3] = {0, 0, 0};
-String ADS_DATA = "";
+float ADS_DATA[3] = {0, 0, 0};
+StaticJsonDocument<3> ADS_Data; //Change size depending on how much data you want to send
+char ADS_Json[100]; 
 void ADS_Setup(TwoWire T) {
   if (!ADS.begin(ADSaddr, &T)) {} //Confirm Connection
 }
@@ -26,10 +28,10 @@ void update_ADS() {
   update_Lumosity();
   update_Bat_Volt();
   update_Audio();
-  String ret = "";
-  for (int i = 0; i < 3; i++) 
-    ret += String(ADS_data[i]) + "|";
-  ADS_DATA = ret;
+  ADS_Data["Lumosity"] = ADS_DATA[0];
+  ADS_Data["Bat_Volt"] = ADS_DATA[1];
+  ADS_Data["Audio"] = ADS_DATA[2];
+  serializeJson(ADS_Data, ADS_Json);
 }
 
 #endif

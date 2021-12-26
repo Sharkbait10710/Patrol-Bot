@@ -6,7 +6,6 @@
 #include "Servo.h"
 #include "Motor.h"
 #include "WebSocket.h"
-#include "Regex.h"
 
 //I2C
 #define I2C_SCL 16
@@ -34,31 +33,32 @@ void DualTaskcode( void * pvParameters ){
 
 //WSHandler
 void evaluateWSMsg(String& str) {
-  if (Capt_Reg("GET_IMU", str)) {
-    webSocket.sendTXT(IMU_DATA);
-    USE_SERIAL.println(IMU_DATA);
+  unsigned int size = str.length();
+  char buffer[size]; str.toCharArray(buffer, size);
+  DynamicJsonDocument server_JSON(1024);
+  DeserializationError err = deserializeJson(server_JSON, buffer);
+  if (err) {USE_SERIAL.println("Error reading server_JSON"); return;}
+  if (server_JSON["request"] == "N/A") {}
+  else if (server_JSON["request"] == "GET_MPU") {
+    webSocket.sendTXT(MPU_Json);
+    USE_SERIAL.println(MPU_Json);
   }
-  else if (Capt_Reg("GET_ADS", str)) {
-    webSocket.sendTXT(ADS_DATA);
-    USE_SERIAL.println(IMU_DATA);
+  else if (server_JSON["request"] == "GET_ADS") {
+    webSocket.sendTXT(ADS_Json);
+    USE_SERIAL.println(ADS_Json);
   }
-  else if (Capt_Reg("GET_SONAR", str)) {
-    webSocket.sendTXT(SONAR_DATA);
-    USE_SERIAL.println(SONAR_DATA);
+  else if (server_JSON["request"] == "GET_SONAR") {
+    webSocket.sendTXT(Sonar_Json);
+    USE_SERIAL.println(Sonar_Json);
+  }  
+  if (server_JSON["instruction"] == "N/A") {}
+  else if (server_JSON["instruction"] == "LEFT_MOTOR") {
+  input_Spd[0] = server_JSON["LEFT_MOTOR_SPEED"];
   }
-  else if (Capt_Reg("LEFT_MOTOR", str)) {
-    flush_Data();
-    //Specify regex and extract data
+  else if (server_JSON["instruction"] == "RIGHT_MOTOR") {
+  input_Spd[1] = server_JSON["RIGHT_MOTOR_SPEED"];
   }
-  else if (Capt_Reg("RIGHT_MOTOR", str)) {
-    flush_Data();
-    //Specify regex and extract data
-  }
-  else if (Capt_Reg("RIGHT_MOTOR", str)) {
-    flush_Data();
-    //Specify regex and extract data
-  }
-  flush_Data();
+
   str = "";
 }
 
@@ -72,6 +72,7 @@ void setup() {
   MPU_setup(I2C);
   servo_Setup();
   Motor_Setup();
+  configCamera();
   xTaskCreatePinnedToCore(
     DualTaskcode, // Function to implement the task
     "DualTask",   // Name of the task 
@@ -82,10 +83,11 @@ void setup() {
     0);           // Core where the task should run 
 
   //Connect to WiFi
-  WSSetup("BadWifi", "Sanmina02", "192.168.0.28", 8082);
+  WSSetup(SSID, password, server_IP, port);
 }
 
 void loop() {
   webSocket.loop();
   evaluateWSMsg(WSMsg);
+  if(connected) liveCam();
 }

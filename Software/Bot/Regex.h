@@ -1,3 +1,4 @@
+//Byproduct of discovering JSON 
 #ifndef Regex_H
 #define Regex_H
 #include <Regexp.h> //Utilizes Lua regular expressions
