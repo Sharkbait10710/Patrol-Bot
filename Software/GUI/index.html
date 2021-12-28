@@ -10,7 +10,95 @@
 </head>
 <body>
     <!-- START THE NAVBAR SECTION -->
-    <h1>Patrol-Bot GUI</h1>
+    <div class = "container">
+        <div class="row">
+
+            <div class="col-5">
+                <h2 id="IMU">MPU-6050</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Position (m)</th>
+                            <th scope="col">Orientation (°)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <td id = "delta_S.x">delta_S.x</td>
+                            <td id = "delta_R.x">delta_R.x</td>
+                        </tr>
+                        <tr>
+                            <td id = "delta_S.y">delta_S.y</td>
+                            <td id = "delta_R.y">delta_R.y</td>
+                        </tr>
+                        <tr>
+                            <td id = "delta_S.z">delta_S.z</td>
+                            <td id = "delta_R.z">delta_R.z</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-5">
+                <h2 id="ADC">ADS1115</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Lumosity (lm)</th>
+                            <th scope="col">Bat_Volt (V)</th>
+                            <th scope="col">Audio (integer) </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id = "Lumosity">Lumosity</td>
+                            <td id = "Bat_Volt">Bat_Volt</td>
+                            <td id = "Audio">Audio</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col">
+                <h2 id="Sonars">Sonar</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Sonar (cm)</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td id = "Sonar_1">Sonar_1</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td id = "Sonar_2">Sonar_2</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td id = "Sonar_3">Sonar_3</td>
+                        </tr>
+                      </tbody>
+                  </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col text-center">
+                <h2>Camera</h2>
+                <img id='live' class="img-fluid img-thumbnail" alt="LIVE-CAM-FOOTAGE" src=''>
+            </div>
+            <div class="col">
+                <canvas id="audioChart"></canvas>
+              </div>
+        </div>
+        
+    </div>
     <script src="assets/js/bootstrap.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="GUI.js"></script>
 </body>
 </html>

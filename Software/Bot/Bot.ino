@@ -25,8 +25,11 @@ void DualTaskcode( void * pvParameters ){
   for(;;){
     handle_Motor(input_Spd[0], input_Spd[1]); 
     update_Pos_Rot();
+    webSocket.sendTXT(MPU_Json);
     update_ADS();
+    webSocket.sendTXT(ADS_Json);
     update_SONAR_DATA();
+    webSocket.sendTXT(Sonar_Json);
     delay(10);
   }
 }
@@ -38,7 +41,7 @@ void evaluateWSMsg(String& str) {
   DynamicJsonDocument server_JSON(1024);
   DeserializationError err = deserializeJson(server_JSON, buffer);
   if (err) {USE_SERIAL.println("Error reading server_JSON"); return;}
-  if (server_JSON["request"] == "N/A") {}
+  if (server_JSON["request"] == "N/A") {} //All server JSON must contain a request and instruction
   else if (server_JSON["request"] == "GET_MPU") {
     webSocket.sendTXT(MPU_Json);
     USE_SERIAL.println(MPU_Json);
@@ -50,11 +53,11 @@ void evaluateWSMsg(String& str) {
   else if (server_JSON["request"] == "GET_SONAR") {
     webSocket.sendTXT(Sonar_Json);
     USE_SERIAL.println(Sonar_Json);
-  }  
+  }
+    
   if (server_JSON["instruction"] == "N/A") {}
   else if (server_JSON["instruction"] == "LEFT_MOTOR") {
   input_Spd[0] = static_cast<int>(server_JSON["LEFT_MOTOR_SPEED"]);
-
   }
   else if (server_JSON["instruction"] == "RIGHT_MOTOR") {
   input_Spd[1] = static_cast<int>(server_JSON["RIGHT_MOTOR_SPEED"]);

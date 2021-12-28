@@ -35,7 +35,9 @@ $display-font-sizes: (
   4: 3.5rem,
   5: 3rem,
   6: 2.5rem
-) !default;
+);
 
+//GUTTER
+$grid-gutter-width: 0.5rem;
 //IMPORT BOOTSTRAP 5
 @import "../node_modules/bootstrap/scss/bootstrap.scss"

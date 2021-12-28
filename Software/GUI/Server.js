@@ -17,15 +17,16 @@ const wss = new SocketServer({server});
 
 //array of clients
 var lookup = {};
-const DEBUG = true;
+var names = {};
 
 //Data
 const MPU   = [0, 0, 0, 0, 0, 0];
 const ADS   = [0, 0, 20        ];
 const Sonar = [0, 0, 0         ];
+const temperature = 20;
 
 wss.on('connection', (ws) => {
-    ws.id=Date.now()%10000000000;
+    ws.id= Math.random().toString(36).substr(2, 9);
     lookup[ws.id]=ws;
     console.log('[Server] A Client ' + ws.id + ' was connected.');
 
@@ -35,81 +36,123 @@ wss.on('connection', (ws) => {
     })
 
     ws.on('message', (message) => {
-        if (DEBUG) console.log('[Server] Recieved message: %s', message);
-        let data = JSON.parse(message);
-        let data_name = data["name"];
-        switch (data["type"]) {
-            case "master-device": {ws.name=data_name; break;}
-            case "sensor": {
-                switch (data_name) {
-                    case "MPU-6050": {
-                    MPU[0] = data["delta_S.x"];
-                    MPU[1] = data["delta_S.y"];
-                    MPU[2] = data["delta_S.z"];
+        console.log("[CLIENT] Message:" + message);
+
+        try {
+            var data, data_name;
+            data = JSON.parse(message);
+            data_name = data['name'];
+            switch (data["type"]) {
+                case "master-device": {
+                    ws.name=data_name; 
+                    if (data_name == 'GUI') console.log('GUI detected');
+                    names[data_name] = lookup[ws.id];
+                    break;
+                }
+                case "sensor": {
+                    try {names['GUI'].send(JSON.stringify(data));}
+                    catch (e) {console.log('No GUI detected');}
                     
-                    MPU[3] = data["delta_R.x"];
-                    MPU[4] = data["delta_R.y"];
-                    MPU[5] = data["delta_R.z"];
-                    break;}
+                    switch (data_name) {
+                        case "MPU-6050": {
+                        MPU[0] = data["delta_S.x"];
+                        MPU[1] = data["delta_S.y"];
+                        MPU[2] = data["delta_S.z"];
+                        
+                        MPU[3] = data["delta_R.x"];
+                        MPU[4] = data["delta_R.y"];
+                        MPU[5] = data["delta_R.z"];
 
-                    case "Sonar"   : {
-                    Sonar[0] = data["Sonar_1"];
-                    Sonar[1] = data["Sonar_2"];
-                    Sonar[2] = data["Sonar_3"];
-                    break;}
+                        temperature = data["temp"];
+                        break;}
 
-                    case "ADS"     : {
-                    ADS[0] = data["Lumosity"];
-                    ADS[1] = data["Bat_Volt"];
-                    ADS[2] = data["Audio"   ];
-                    break;}
+                        case "Sonar"   : {
+                        Sonar[0] = data["Sonar_1"];
+                        Sonar[1] = data["Sonar_2"];
+                        Sonar[2] = data["Sonar_3"];
+                        break;}
 
-                    default: break;
+                        case "ADS"     : {
+                        ADS[0] = data["Lumosity"];
+                        ADS[1] = data["Bat_Volt"];
+                        ADS[2] = data["Audio"   ];
+                        break;}
+
+                        default: break;
+                    }
                 }
-            }
-            
-            case "request": {
-                switch (data_name) {
-                    case "MPU-6050": {
-                    ws.send(JSON.stringify({
-                        "From"     :   "Server",
-                        "Type"     :   "Sensor",
-                        "Name"     : "MPU-6050",
-                        "delta_S.x":     MPU[0],
-                        "delta_S.y":     MPU[1],
-                        "delta_S.z":     MPU[2],
-
-                        "delta_R.x":     MPU[3],
-                        "delta_R.y":     MPU[4],
-                        "delta_R.z":     MPU[5]
-                    }));
-                    break;}
-
-                    case "ADS": {
+                
+                case "request": {
+                    switch (data_name) {
+                        case "MPU-6050": {
                         ws.send(JSON.stringify({
                             "From"     :   "Server",
                             "Type"     :   "Sensor",
-                            "Name"     : "ADS",
-                            "Lumosity":      ADS[0],
-                            "Bat_volt":      ADS[1],
-                            "Temperature":   ADS[2]
-                        })); 
-                    break;}
+                            "Name"     : "MPU-6050",
+                            "delta_S.x":     MPU[0],
+                            "delta_S.y":     MPU[1],
+                            "delta_S.z":     MPU[2],
 
-                    case "Sonar": {
-                        ws.send(JSON.stringify({
-                            "From"     :   "Server",
-                            "Type"     :   "Sensor",
-                            "Name"     :    "Sonar",
-                            "Sonar-1":      Sonar[0],
-                            "Sonar-2":      Sonar[1],
-                            "Sonar-3":      Sonar[2]
-                        })); 
-                    break;}
+                            "delta_R.x":     MPU[3],
+                            "delta_R.y":     MPU[4],
+                            "delta_R.z":     MPU[5]
+                        }));
+                        break;}
+
+                        case "ADS": {
+                            ws.send(JSON.stringify({
+                                "From"     :   "Server",
+                                "Type"     :   "Sensor",
+                                "Name"     :      "ADS",
+                                "Lumosity":      ADS[0],
+                                "Bat_volt":      ADS[1],
+                                "Audio"   :      ADS[2]
+                            })); 
+                        break;}
+
+                        case "Sonar": {
+                            ws.send(JSON.stringify({
+                                "From"     :   "Server",
+                                "Type"     :   "Sensor",
+                                "Name"     :    "Sonar",
+                                "Sonar-1":      Sonar[0],
+                                "Sonar-2":      Sonar[1],
+                                "Sonar-3":      Sonar[2]
+                            })); 
+                        break;}
+
+                        case "Temperature": {
+                            ws.send(JSON.stringify({
+                                "From"     :   "Server",
+                                "Type"     :   "Sensor",
+                                "Name"     :    "Temperature",
+                                "Temp":      temperature
+                            })); 
+                        break;}
+
+                        default: break;
+                    }
                 }
-            }
 
-            default: break;
+                default: break;
+            }
         }
+        catch (e) {
+            try {names['GUI'].send(message);}
+            catch (e) {console.log('No GUI detected');}
+        } //Camera Data: Binary
+        
     })
 })
+
+
+// function showProps(obj, objName) { //DEBUGGING PURPOSES
+//     let result = '';
+//     for (let i in obj) {
+//       // obj.hasOwnProperty() is used to filter out properties from the object's prototype chain
+//       if (obj.hasOwnProperty(i)) {
+//         result += `${objName}.${i} = ${obj[i]}\n`;
+//       }
+//     }
+//     console.log(result);
+//   }

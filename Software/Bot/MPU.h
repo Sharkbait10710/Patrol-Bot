@@ -13,7 +13,7 @@ double delta_V[3] = {0, 0, 0}; //Velocity: x | y | z
 double delta_S[3] = {0, 0, 0}; //Position
 double delta_O[3] = {0, 0, 0}; //Ang Vel 
 double delta_R[3] = {0, 0, 0}; //Rotation
-StaticJsonDocument<8> MPU_Data; //Change size depending on how much data you want to send
+StaticJsonDocument<7> MPU_Data; //Change size depending on how much data you want to send
 char MPU_Json[100]; 
 
 void MPU_setup(TwoWire T) {
@@ -22,8 +22,6 @@ void MPU_setup(TwoWire T) {
   MPU.setGyroRange(MPU6050_RANGE_500_DEG);
   MPU.setFilterBandwidth(MPU6050_BAND_21_HZ);
   MPU.getEvent(&a, &g, &temp);
-  MPU_Data["type"] = "sensor";
-  MPU_Data["name"] = "MPU-6050";
 }
 
 void poll() {
@@ -58,8 +56,6 @@ void poll() {
     delta_S[i] = delta_S[i] + delta_V[i]*Time;
 }
 
-int get_Temp() {return temp.temperature;}
-
 void update_Pos_Rot() {
   poll();
   MPU_Data["delta_S.x"] = delta_S[0];
@@ -68,6 +64,7 @@ void update_Pos_Rot() {
   MPU_Data["delta_R.x"] = delta_R[0];
   MPU_Data["delta_R.y"] = delta_R[1];
   MPU_Data["delta_R.z"] = delta_R[2];
+  MPU_Data["temp"     ] = temp.temperature;
   serializeJson(MPU_Data, MPU_Json);
 }
 #endif
