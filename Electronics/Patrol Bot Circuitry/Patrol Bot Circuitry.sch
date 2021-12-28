@@ -776,7 +776,6 @@ Accelerometer and gyroscope sensor.
 NoConn ~ 9450 1300
 NoConn ~ 8250 2500
 NoConn ~ 8250 2000
-NoConn ~ 8250 1700
 NoConn ~ 8250 1600
 NoConn ~ 8250 1500
 NoConn ~ 9450 2300
@@ -1206,5 +1205,16 @@ F 2 "OptoDevice:R_LDR_4.9x4.2mm_P2.54mm_Vertical" H 1400 6750 50  0001 C CNN
 F 3 "~" H 1400 6750 50  0001 C CNN
 	1    1450 6750
 	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 61CAC55A
+P 8250 1700
+F 0 "#PWR?" H 8250 1450 50  0001 C CNN
+F 1 "GND" H 8255 1527 50  0000 C CNN
+F 2 "" H 8250 1700 50  0001 C CNN
+F 3 "" H 8250 1700 50  0001 C CNN
+	1    8250 1700
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

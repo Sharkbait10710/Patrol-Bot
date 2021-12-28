@@ -1,4 +1,4 @@
-//Libraries 
+//Dependencies
 #include <Wire.h>
 #include "ADS1115.h"
 #include "MCP.h"
@@ -12,10 +12,10 @@
 #define I2C_SDA 0
 TwoWire I2C = TwoWire(0);
 
-//Incoming-Speed
+//Motor Speeds
 String input_Spd[2] = {"0", "0"};
 
-//Dual-Core
+//Dual-Core; cannot connect to server and run motors / sensors
 TaskHandle_t DualTask;
 
 void DualTaskcode( void * pvParameters ){
@@ -23,6 +23,7 @@ void DualTaskcode( void * pvParameters ){
   Serial.println(xPortGetCoreID());
 
   for(;;){
+    //Constantly poll and send sensor data to server
     handle_Motor(input_Spd[0], input_Spd[1]); 
     update_Pos_Rot();
     webSocket.sendTXT(MPU_Json);
@@ -93,5 +94,5 @@ void setup() {
 void loop() {
   webSocket.loop();
   evaluateWSMsg(WSMsg);
-  if(connected) liveCam();
+  liveCam();
 }

@@ -1,13 +1,16 @@
 #ifndef WEBSOCKET_H
 #define WEBSOCKET_H
 
-//Libraries
+//Dependencies
 #include <WiFi.h>
 #include <WiFiMulti.h>
 #include <WiFiClientSecure.h>
 #include <WebSocketsClient.h>
 #include <Arduino.h>
 #include <ArduinoJson.h>
+//Utilize http://www.iotsharing.com/2020/03/demo-48-using-websocket-for-camera-live.html
+//for evaluating camera functionalities
+//Must redefine all sensor_t data types b/c ADS uses same name
 #define sensor_t sensor_t_
 #include "esp_camera.h" 
 #undef sensor_t
@@ -44,8 +47,6 @@ String WSMsg = "";
 #define VSYNC_GPIO_NUM    25
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
-
-bool connected = false;
 
 void configCamera(){
   camera_config_t config;
@@ -88,7 +89,7 @@ void liveCam(){
       Serial.println("Frame buffer could not be acquired");
       return;
   }
-  //replace this with your own function
+  //Send binary camera data to server
   webSocket.sendBIN(fb->buf, fb->len);
 
   //return the frame buffer back to be reused
@@ -125,13 +126,13 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     //Let the user know that WS is connected
     case WStype_CONNECTED: {
       USE_SERIAL.printf("[WSc] Connected to url: %s\n", payload);
-      StaticJsonDocument<3> ESP32_Profile; //Change size depending on how much data you want to send
+      //Let server know ESP32 is connecting
+      StaticJsonDocument<3> ESP32_Profile; 
       ESP32_Profile["type"] = "master-device";
       ESP32_Profile["name"] = "ESP32-CAM";
       ESP32_Profile["message"] = "trying to connect...";
       char Txt[50]; serializeJson(ESP32_Profile, Txt);
       webSocket.sendTXT(Txt);
-      connected = true;
       if (DEBUG) USE_SERIAL.println(Txt);}
       break;
 
@@ -173,7 +174,6 @@ void WSSetup(const char* AP, const char* PW, const char* IP, int Port) {
   //Flush out the buffer
   for(uint8_t t = 4; t > 0; t--) {
     if (DEBUG) USE_SERIAL.printf("[SETUP] BOOT WAIT %d...\n", t);
-    
     USE_SERIAL.flush();
     delay(1000);
   }
