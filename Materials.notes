@@ -2,63 +2,89 @@
     ESP32 CAM:
         *URL*: https://www.amazon.com/kitbooly-ESP32-CAM-MB-Serial-Development-Antenna/dp/B098X6XZZZ/ref=sr_1_2?crid=1TWW6NDDMC8XJ&keywords=esp32%2Bcam%2Bantenna&qid=1640287755&sprefix=esp32%2Bcam%2Bantenna%2Caps%2C152&sr=8-2
         *Function*: allow real-time camera streaming over the internet; comes with external antenna
-    Longer CAM:
-        *URL*: https://www.amazon.com/Taidacent-OV2640-Megapixel-Interface-Breakout/dp/B08FJB4DJP/ref=sr_1_3?keywords=OV2640+module&qid=1637713522&qsid=146-7781693-5699017&sr=8-3&sres=B097SZBV7N%2CB08FJB4DJP%2CB0894KKXHX%2CB07S5PVZKV%2CB012UXNDOY%2CB092ZXT1XG%2CB08GKLWCB7%2CB08GWN98RM%2CB07QYTVZL6%2CB08RDP8LKP%2CB081YPQCX8%2CB07T2RYTJF%2CB07T1PG77D%2CB08MJJTFN9%2CB07RWHW4JC%2CB08P2578LV
-        *Function*: CAM that comes with esp32 is too short, and this one is longer
+        !Cost!: $13.9
     Voltage Regulator:
         *URL*: https://www.amazon.com/DZS-Elec-Converter-Adjustable-Regulator/dp/B07JWGN1F6/ref=sr_1_47?keywords=voltage+regulator+12V+to+5V&qid=1637713756&sr=8-47
         *Function*: steps down battery voltage to 5V for ESP32 CAM; more efficient than linear converter and better with using battery power
         *Note*: Dimensions here - https://s5.electrodragon.com/wp-content/uploads/2013/11/Tiny-DCDC-Step-Down-ADJ-Power-Module-03.jpg
-    Castor Wheels:
-        *URL*: https://www.amazon.com/Cofufu-Plastic-Rectangle-Swivel-Caster/dp/B00F5PNISQ/ref=sr_1_1?keywords=arduino+castor+wheels&qid=1637104096&qsid=146-7781693-5699017&s=hi&sr=1-1&sres=B00F5PNISQ%2CB08M9TKGC3%2CB085RQFMYR%2CB01LWO1P2F%2CB08KR7KMQQ%2CB07MQBDPBN%2CB071GTK6NZ%2CB010SLSK48%2CB00004YOIV%2CB07R1KSK2Z%2CB08HS381FH%2CB077MQLDQS%2CB085S4LX2B%2CB01N5OF6BG%2CB07SLY8DP5%2CB082781T4S%2CB0814RNLPF%2CB07PQK27G8%2CB0719CF3RQ%2CB08BR8BFDF
-        *Function*: provide more mechanical stability and balance the robot
+        !Cost!: $6.38
     MPU-6050 Accelerometer Gyroscope Module:
-        *URL*: https://www.amazon.com/HiLetgo-MPU-6050-Accelerometer-Gyroscope-Converter/dp/B00LP25V1A/ref=sr_1_6?keywords=accelerometer&qid=1637255428&qsid=146-7781693-5699017&sr=8-6&sres=B07T2C97WN%2CB01N99BUMR%2CB01MRPKDV9%2CB00LP25V1A%2CB07PY38BCB%2CB07G21XRV6%2CB00NAY2TUC%2CB008BOPN40%2CB01BU70B64%2CB08TH9NH55%2CB007ICEJTQ%2CB07P5YZ7ZD%2CB072MN8ZRC%2CB07M98PKT4%2CB01BT4N9BC%2CB07W3S7X7W&th=1
+        *URL*: https://www.amazon.com/NOYITO-MPU-6050-Gyroscope-Accelerometer-6050-2Pcs/dp/B07FZWFYP3/ref=sr_1_13?crid=2TWMV5ARMKML4&keywords=mpu6050&qid=1640717006&s=industrial&sprefix=mpu605%2Cindustrial%2C139&sr=1-13
         *Function*: monitor yaw, pitch, and roll of robot to evaluate turning motion or inclined surface
+        !Cost!: $6.99
     Greartisan DC 12V 100RPM Gear Motor:
         *URL*: https://www.amazon.com/Greartisan-Electric-Reduction-Eccentric-Diameter/dp/B0721T1PXQ/ref=sr_1_9?crid=352XRVMPN5SYB&keywords=9V%2Bdc%2Bmotor&qid=1640131145&s=hi&sprefix=9v%2Bdc%2Bmotor%2Ctools%2C156&sr=1-9&th=1
         *Function*: Rotate and translate robot
         *Installation*: screw-in pins on side with motor shaft
         *Capabilitiy*: At constant load, speed is proportional to voltage. At constant voltage, speed is inversely proportional to torque
         *Note*: DRV8871 too expensive
+        !Cost!: $30.00
     TB6612FNG Motor Driver:
-        *URL*: https://www.amazon.com/Dual-Motor-Driver-Module-TB6612FNG/dp/B08J3S6G2N/ref=sr_1_2?keywords=TB6612FNG&qid=1637702346&qsid=146-7781693-5699017&sr=8-2&sres=B08J3S6G2N%2CB07PV1S8HX%2CB07DS2FG8K%2CB00UYIFYCW%2CB073SP76MC%2CB07DK6G9GF%2CB087QDTJY5%2CB01N47M1G4%2CB07VKZT38H%2CB082W9YHKL%2CB01MF67DX6%2CB072TZS8RT%2CB08KVZ966L%2CB07P6LPY2C%2CB09HZRMLYD%2CB09CN95CXG
+        *URL*: https://www.amazon.com/DAOKI-TB6612FNG-Stepper-Control-Microcontroller/dp/B087QDTJY5/ref=sr_1_5?crid=3RB3ES2HMGWCT&keywords=TB6612FNG&qid=1640717127&sprefix=tb6612fng%2Caps%2C107&sr=8-5
+        !Cost!: $8.29
     EBL Rechargable Batteries:
         *URL*: https://www.amazon.com/EBL-AA-Batteries-Technology-Rechargeable/dp/B00HSHLC82/ref=sr_1_6?keywords=rechargeable+aa+batteries&qid=1637799070&qsid=146-7781693-5699017&sr=8-6&sres=B07NWWHK1J%2CB00HSHLC82%2CB009NEKAEA%2CB00DNPT1AO%2CB004QMXX4S%2CB07MQ8YRF3%2CB07PJZKB8X%2CB00JHKSN5I%2CB081FF82RK%2CB00007ISWA%2CB07FQD7PZ5%2CB08B3KNLK9%2CB00JHKSN4O%2CB07M7JHBNC%2CB07V3JQS1Z%2CB07M7JGTP7%2CB00JHKSL28%2CB07T8XLW2W%2CB07DLX8BFD%2CB086WFJB6G&srpt=BATTERY
         *Note*: Charge max 10% capacity per hr
+        !Cost!:
     LM317 Current Regulator:
         *URL*: https://www.amazon.com/BOJACK-Adjustable-Positive-Voltage-Regulator/dp/B07VNNHWF9/ref=sr_1_3?keywords=lm317&qid=1637957723&qsid=146-7781693-5699017&sr=8-3&sres=B07VNNHWF9%2CB07LG4M712%2CB01M9G7V49%2CB07G59J3TL%2CB07VJDPZ2L%2CB07T5ZHY63%2CB083TX8964%2CB085S5Q1JT%2CB07RX9P3ZW%2CB082QSVGVF%2CB07S28NQ78%2CB07PPNZ3ZJ%2CB07ZRLCH3Z%2CB083DF4Z1K%2CB01G4QTQJ4%2CB07ZVVN7K9
         *Note*: Connect a resistor from out pin to load and adjust pin; this regulator tries to maintain a 1.25 V drop between the adjust and out pin
+        !Cost!: $17.99
     10V Power Supply:
         *Location*: currently at home 
-    IRLZ44N Transistors:
+        !Cost!: $0.00
+    IRLZ44N N-channel Mosfets:
         *URL*: https://www.amazon.com/Bridgold-N-Channel-Transistor-International-Rectifier/dp/B07MW1N4Q5/ref=sr_1_1?keywords=IRLZ44N&qid=1637706788&qsid=146-7781693-5699017&sr=8-1&sres=B07MW1N4Q5%2CB07DWYGNHC%2CB08NDFJ5ZC%2CB08R9JMTSX%2CB07Q3DSBZ4%2CB09L5P8M5X%2CB09LH8J9ZQ%2CB08NRWVQ62%2CB07YYMRLXF%2CB09LLMF7GY%2CB07NV19RPR%2CB09KN2V4FC%2CB07S6FC1JM%2CB072MKN6HJ%2CB082J3F8HJ%2CB083TH9XV2
-        *Function*: switch from battery to charger when battery is being charged and switch from charger to battery when no longer charging
+        *Function*: switch from battery to charger when battery is being charged and switch from charger to battery when no longer charging; n-channel
         *Question*: Need to place 10 Kohm resistor between gate and source pins?
+        !Cost!: $9.99
+    IRF4905 P-channel Mosfets:
+        *URL*: https://www.amazon.com/Bridgold-IRF4905-IRF4905P-IRF4905PBF-Transistor/dp/B07S2WT1PM/ref=sr_1_3?crid=2TI6QHTHTOQJ8&keywords=IRF4905&qid=1640715659&sprefix=irf4905%2Caps%2C141&sr=8-3
+        !Cost!: $8.29
     HC-SO4 Sonar Sensor:
         *URL*: https://www.amazon.com/Smraza-Ultrasonic-Distance-Mounting-Duemilanove/dp/B01JG09DCK/ref=sr_1_11?keywords=HC-SR05&qid=1637979214&qsid=146-7781693-5699017&sr=8-11&sres=B0160ZLFZC%2CB088NGWSFH%2CB082NVSLJQ%2CB088NFHQG8%2CB07VQRCSQR%2CB088NDRWWG%2CB07YY7CFY8%2CB071XP7H81%2CB07PZKVR2P%2CB07MTWZDQZ%2CB01JG09DCK%2CB07145GM4B%2CB01G62AGI6%2CB07LB7JFZ9%2CB07SQW48HK%2CB073GW7W5N%2CB07RGB4W8V%2CB09B233W83%2CB07CQ9YSJ2%2CB07X5H77T7
         *Function*: Scan / Map out room 
+        !Cost!:
     ADS1115 ADC Converter:
         *URL*: https://www.amazon.com/ADS1115-Digital-Converter-Precised-Amplifier/dp/B082QX1RDV/ref=sr_1_9?keywords=ads1115&qid=1638033857&qsid=146-7781693-5699017&sr=8-9&sres=B07VPFLSMX%2CB08QD2C42R%2CB08T19JRYQ%2CB08XZ7NYNB%2CB08HLYKXC6%2CB07TGB6KF8%2CB082QX1RDV%2CB01DLHKMO2%2CB08PP9QB3T%2CB07W6481Y2%2CB07GGY7WX7%2CB07X9HKCRZ%2CB083K27WZC%2CB0777JTNM1%2CB08HLWLR77%2CB00QIW4MGW
         *Function*: Allows data acquisition from microphone and photoresistor
+        !Cost!:
     MCP23017:
         *URL*: https://www.amazon.com/MCP23017-input-output-port-expander/dp/B00I6OEWJM/ref=sr_1_2?keywords=MCP23017&qid=1638049220&qsid=146-7781693-5699017&sr=8-2&sres=B00I6OEWJM%2CB08ZC2FSW8%2CB073R8T2H1%2CB08DFNR2JW%2CB082MMRNM4%2CB08YN7T13G%2CB07P2H1NZG%2CB08X6NDW3N%2CB00NAY3UAK%2CB07X4W785H%2CB086C4J549%2CB07K5MTRLS%2CB07GDHQC36%2CB07T294YTX%2CB07PMGGPN8%2CB09F9JZ8NH
         *Function*: expands GPIO ports
+        !Cost!:
     Photoresistor:
         *URL*: https://www.amazon.com/eBoot-Photoresistor-Sensitive-Resistor-Dependent/dp/B01N7V536K/ref=sr_1_3?keywords=photoresistor&qid=1638033991&qsid=146-7781693-5699017&sr=8-3&sres=B01N7V536K%2CB08K2GZYN9%2CB08L6HGNTP%2CB01N1FKS4L%2CB01M3TO7RA%2CB07XDW83MP%2CB07M9P6357%2CB07QKJPWCG%2CB00RLGFIEY%2CB08QRRG4SN%2CB00N1ZJUN4%2CB07G48B3VL%2CB01CGCNO34%2CB00Q6ZIK1O%2CB08K8YSPVJ%2CB07JH9XW4J
         *Function*: Detects light and determine if specific areas are reasonable to hide in
+        !Cost!:
     MAX9814 Microphone: 
         *URL*: https://www.amazon.com/Aokin-MAX9814-Electret-Microphone-Amplifier/dp/B07V723WBL/ref=sr_1_2?keywords=max9814&qid=1638045867&qsid=146-7781693-5699017&sr=8-2&sres=B07V723WBL%2CB07YJ1KK6Z%2CB08JHWSX2C%2CB08GP42PJQ%2CB07DJWQDQF%2CB01G1FKH78%2CB08HSJ82ZZ%2CB08MYVL2FT%2CB07KDQLCNS%2CB07M9FNDNT%2CB08KZWRMB1%2CB0716XRBSY%2CB09LCFHGMB%2CB07PWBXHV9%2CB07GZGBJZM%2CB08TTM371D
         *Note*: Use filter circuit with low dropout regulator to reduce noise in power supply; more references at https://www.youtube.com/watch?v=pPh3_ciEmzs
+        !Cost!:
     MP1584EN:
         *URL*: https://www.amazon.com/MP1584EN-DC-DC-Converter-Adjustable-Module/dp/B08247LRYS/ref=sr_1_5?crid=3RUKJUDBTX233&keywords=MP1584EN&qid=1640202736&s=electronics&sprefix=mp1584en%2Celectronics%2C192&sr=1-5
         *Note*: Buck Converter
+        !Cost!:
     Battery Holder:
         *URL*: https://www.amazon.com/Thicken-Battery-Holder-Standard-Connector/dp/B07WP1CYYW/ref=sr_1_4?keywords=8+x+aa+battery+holder&qid=1640213768&sr=8-4
+        !Cost!:
     Ball Bearings:
         *URL*: https://www.amazon.com/Bearings-Skateboard-Shielded-Miniature-Skateboards/dp/B07R7PR72H/ref=sr_1_2?crid=1O97DTMB31YEG&keywords=bearings&qid=1640220038&sprefix=bearings%2Caps%2C195&sr=8-2
+        !Cost!:
     Standoffs:
         *URL*: https://www.amazon.com/HONJIE-Female-Hexagon-Standoff-Pillars/dp/B07Y1KXSM2/ref=sr_1_4?crid=X1CT6UQK2R5H&keywords=M4+standoff&qid=1640225564&sprefix=m4+standoff%2Caps%2C129&sr=8-4
         *Note*: Male-Female
+        !Cost!:
     M2 nuts and bolts:
         *URL*: https://www.amazon.com/DYWISHKEY-Pieces-Stainless-Button-Screws/dp/B07W5HBRMP/ref=sr_1_1?crid=2BHAQNQX3KSRV&keywords=M2+bolts+not+nuts&qid=1640231021&sprefix=m2+bolts+not+nut%2Caps%2C149&sr=8-1
+        !Cost!:
+    Servo:
+        *URL*: https://www.amazon.com/Micro-Servos-Helicopter-Airplane-Controls/dp/B07MLR1498/ref=sr_1_3?crid=3RH03RAANPAXZ&keywords=sg90+servo&qid=1640710185&sprefix=sg90+servo%2Caps%2C123&sr=8-3
+        !Cost!:
+    3.3V Regulator:
+        *URL*: https://www.amazon.com/HiLetgo-AMS1117-3-3-Step-Down-Module-AMS1117-3-3V/dp/B01HXU1NQY/ref=sr_1_22?crid=188CQR29FW4O5&keywords=lm2931&qid=1640716053&sprefix=lm2931%2Caps%2C144&sr=8-22
+        *Note*: Replace LM2931-3.3_TO220
+        !Cost!: $5.99
+    Capacitors:
+    Resistors:
+

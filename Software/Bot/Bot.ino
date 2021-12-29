@@ -8,19 +8,20 @@
 #include "WebSocket.h"
 
 //I2C
+//Redefine SCL/SDA pins
 #define I2C_SCL 16
 #define I2C_SDA 0
+//Specify I2C pins for initializing other I2C devices
 TwoWire I2C = TwoWire(0);
 
-//Motor Speeds
+//Motor Speeds; sent from server / GUI
 String input_Spd[2] = {"0", "0"};
 
 //Dual-Core; cannot connect to server and run motors / sensors
 TaskHandle_t DualTask;
-
 void DualTaskcode( void * pvParameters ){
-  Serial.print("Task1 running on core ");
-  Serial.println(xPortGetCoreID());
+  USE_SERIAL.print("Task1 running on core ");
+  USE_SERIAL.println(xPortGetCoreID());
 
   for(;;){
     //Constantly poll and send sensor data to server

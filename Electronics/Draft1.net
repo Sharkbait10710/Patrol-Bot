@@ -1,0 +1,14 @@
+* C:\Projects\Patrol-Bot\Electronics\Draft1.asc
+V1 N004 0 5
+M1 N004 N005 N003 N003 NMOS
+M2 N003 N001 N002 N002 PMOS
+V2 N002 0 5
+V3 N001 0 10
+V4 N005 0 10
+R1 N003 0 1.6K
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\DangL\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 0.05
+.backanno
+.end
