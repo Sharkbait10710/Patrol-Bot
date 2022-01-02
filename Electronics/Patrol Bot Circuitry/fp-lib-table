@@ -12,4 +12,6 @@
   (lib (name ROB-14450)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/ROB-14450")(options "")(descr ""))
   (lib (name MCP23017)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/MCP23017")(options "")(descr ""))
   (lib (name HC-SRO4)(type KiCad)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/HC-SRO4")(options "")(descr ""))
+  (lib (name digikey-footprints)(type KiCad)(uri C:/Users/DangL/Documents/digikey-kicad-library/digikey-footprints.pretty)(options "")(descr ""))
+  (lib (name PCF8574N)(type Legacy)(uri "C:/Projects/Patrol-Bot/Electronics/KiCAD Symbols_FootPrints/PCF8574N.mod")(options "")(descr ""))
 )

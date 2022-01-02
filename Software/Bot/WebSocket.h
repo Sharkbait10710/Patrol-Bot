@@ -17,7 +17,7 @@
 
 //Wifi and Websocket objects
 WiFiMulti WiFiMulti;
-const char* SSID = "BadWifi";
+const char* SSID = "GoodWifi";
 const char* password = "Sanmina02";
 const char* server_IP = "192.168.0.28";
 int port = 3000;
