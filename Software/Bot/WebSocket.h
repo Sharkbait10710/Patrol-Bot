@@ -1,33 +1,32 @@
 #ifndef WEBSOCKET_H
 #define WEBSOCKET_H
+////Utilize http://www.iotsharing.com/2020/03/demo-48-using-websocket-for-camera-live.html
 
-//Dependencies
+
+#include <Arduino.h>
+#include <ArduinoJson.h>
+
 #include <WiFi.h>
 #include <WiFiMulti.h>
 #include <WiFiClientSecure.h>
+
 #include <WebSocketsClient.h>
-#include <Arduino.h>
-#include <ArduinoJson.h>
-//Utilize http://www.iotsharing.com/2020/03/demo-48-using-websocket-for-camera-live.html
-//for evaluating camera functionalities
-//Must redefine all sensor_t data types b/c ADS uses same name
+
+#define DEBUG true
+String WSMsg = "";
+
+WiFiMulti WiFiMulti;
+WebSocketsClient webSocket;
+
+const char* SSID = "BadWifi";
+const char* password = "Sanmina02";
+const char* server_IP = "192.168.0.20";
+int port = 80;
+#define USE_SERIAL Serial
+
 #define sensor_t sensor_t_
 #include "esp_camera.h" 
 #undef sensor_t
-
-//Wifi and Websocket objects
-WiFiMulti WiFiMulti;
-const char* SSID = "GoodWifi";
-const char* password = "Sanmina02";
-const char* server_IP = "192.168.0.28";
-int port = 3000;
-WebSocketsClient webSocket;
-
-//Set which serial channel to use
-#define USE_SERIAL Serial
-
-//String variable that is empty if WS message is N/A
-String WSMsg = "";
 
 //Camera
 #define PWDN_GPIO_NUM     32
@@ -96,21 +95,17 @@ void liveCam(){
   esp_camera_fb_return(fb);
 }
 
-//Prints out information during runtime if DEBUG is true
-#define DEBUG false
-
-//I think this function "clears" the memory buffer
 void hexdump(const void *mem, uint32_t len, uint8_t cols = 16) {
   const uint8_t* src = (const uint8_t*) mem;
-  if (DEBUG) USE_SERIAL.printf("\n[HEXDUMP] Address: 0x%08X len: 0x%X (%d)", (ptrdiff_t)src, len, len);
+  USE_SERIAL.printf("\n[HEXDUMP] Address: 0x%08X len: 0x%X (%d)", (ptrdiff_t)src, len, len);
   for(uint32_t i = 0; i < len; i++) {
     if(i % cols == 0) {
-      if (DEBUG) USE_SERIAL.printf("\n[0x%08X] 0x%08X: ", (ptrdiff_t)src, i);
+      USE_SERIAL.printf("\n[0x%08X] 0x%08X: ", (ptrdiff_t)src, i);
     }
-    if (DEBUG) USE_SERIAL.printf("%02X ", *src);
+    USE_SERIAL.printf("%02X ", *src);
     src++;
   }
-  if (DEBUG) USE_SERIAL.printf("\n");
+  USE_SERIAL.printf("\n");
 }
 
 //WS handler function that reacts to different WS events
@@ -127,21 +122,25 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     case WStype_CONNECTED: {
       USE_SERIAL.printf("[WSc] Connected to url: %s\n", payload);
       //Let server know ESP32 is connecting
-      StaticJsonDocument<3> ESP32_Profile; 
+      StaticJsonDocument<200> ESP32_Profile;
       ESP32_Profile["type"] = "master-device";
       ESP32_Profile["name"] = "ESP32-CAM";
       ESP32_Profile["message"] = "trying to connect...";
-      char Txt[50]; serializeJson(ESP32_Profile, Txt);
+      char Txt[150]; serializeJson(ESP32_Profile, Txt);
       webSocket.sendTXT(Txt);
       if (DEBUG) USE_SERIAL.println(Txt);}
       break;
 
     //Let Arduino program know if there is WS Message
     case WStype_TEXT: {
-      char buffer[100];
+      char buffer[300];
       sprintf(buffer, "%s\n", payload);
+      DynamicJsonDocument server_JSON(1024);
+      DeserializationError err = deserializeJson(server_JSON, buffer);
+      if (err) {USE_SERIAL.println("Error reading server_JSON"); break;}
+      if (server_JSON["client_name"] != "ESP-32") break;
       if (DEBUG) USE_SERIAL.printf("[WSc] get text: %s\n", payload);
-      WSMsg = buffer;
+      WSMsg = buffer;}
       break;
 
     //Call the hexdump function.
@@ -157,36 +156,39 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     case WStype_FRAGMENT:
     case WStype_FRAGMENT_FIN:
       break;
-    }
   }
 }
 
-void WSSetup(const char* AP, const char* PW, const char* IP, int Port) {
 
-  //Setup serial channel
+void Wsetup() {
   USE_SERIAL.begin(115200);
+  
   USE_SERIAL.setDebugOutput(true);
 
-  if (DEBUG)
-    for (unsigned i = 0; i < 3; i++)
-     USE_SERIAL.println();
+  USE_SERIAL.println();
+  USE_SERIAL.println();
+  USE_SERIAL.println();
 
-  //Flush out the buffer
   for(uint8_t t = 4; t > 0; t--) {
-    if (DEBUG) USE_SERIAL.printf("[SETUP] BOOT WAIT %d...\n", t);
+    USE_SERIAL.printf("[SETUP] BOOT WAIT %d...\n", t);
     USE_SERIAL.flush();
     delay(1000);
   }
 
-  //Connect to Wifi
-  WiFiMulti.addAP(AP, PW);
+  USE_SERIAL.println("SSID: " + String(SSID));
+  USE_SERIAL.println("password: " + String(password));
+  WiFiMulti.addAP(SSID, password);
 
-  //Keep attempting Wifi Connection if disconnected
-  while(WiFiMulti.run() != WL_CONNECTED)
+  //WiFi.disconnect();
+  while(WiFiMulti.run() != WL_CONNECTED) {
+    USE_SERIAL.println("CONNECTING");
     delay(100);
+  }
 
   // server address, port and URL
-  webSocket.begin(IP, Port, "/");
+  USE_SERIAL.println("server_IP: " + String(server_IP));
+  USE_SERIAL.println("port: " + String(port));
+  webSocket.begin(server_IP, port, "/");
 
   // event handler
   webSocket.onEvent(webSocketEvent);

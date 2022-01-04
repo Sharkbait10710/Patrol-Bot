@@ -6,11 +6,9 @@ const WebSocket = require('ws');
 const SocketServer = require('ws').Server;
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
-const INDEX = path.join(__dirname, 'index.html');
+const PORT = process.env.PORT || 80;
 
 const server = express()
-    .use((req, res) => res.sendFile(INDEX))
     .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const wss = new SocketServer({server});
@@ -20,13 +18,13 @@ var lookup = {};
 var names = {};
 
 //Data
-const MPU   = [0, 0, 0, 0, 0, 0];
-const ADS   = [0, 0, 20        ];
-const Sonar = [0, 0, 0         ];
-const temperature = 20;
+var MPU   = [0, 0, 0, 0, 0, 0];
+var ADS   = [0, 0, 20];
+var Sonar = [0, 0, 0];
+var temperature = 20;
 
 wss.on('connection', (ws) => {
-    ws.id= Math.random().toString(36).substr(2, 9);
+    ws.id = Math.random().toString(36).substr(2, 9);
     lookup[ws.id]=ws;
     console.log('[Server] A Client ' + ws.id + ' was connected.');
 
@@ -36,22 +34,31 @@ wss.on('connection', (ws) => {
     })
 
     ws.on('message', (message) => {
-        console.log("[CLIENT] Message:" + message);
-
+        try {
+            data = JSON.parse(message);
+            console.log("[CLIENT] Message:" + message);
+        }
+        catch (e) {
+            console.log("Caught a non-JSON format");
+            wss.clients.forEach(function each(client) {
+                if (names[client.id] == 'GUI') {
+                    client.send(message);
+                    console.log('SENT');
+                }
+            });
+        }
         try {
             var data, data_name;
             data = JSON.parse(message);
-            data_name = data['name'];
+            data_name = data['Name'];
             switch (data["type"]) {
                 case "master-device": {
                     ws.name=data_name; 
                     if (data_name == 'GUI') console.log('GUI detected');
-                    names[data_name] = lookup[ws.id];
+                    names[ws.id] = 'GUI';
                     break;
                 }
                 case "sensor": {
-                    try {names['GUI'].send(JSON.stringify(data));}
-                    catch (e) {console.log('No GUI detected');}
                     
                     switch (data_name) {
                         case "MPU-6050": {
@@ -75,7 +82,7 @@ wss.on('connection', (ws) => {
                         case "ADS"     : {
                         ADS[0] = data["Lumosity"];
                         ADS[1] = data["Bat_Volt"];
-                        ADS[2] = data["Audio"   ];
+                        ADS[2] = data["Audio"];
                         break;}
 
                         default: break;
@@ -83,12 +90,14 @@ wss.on('connection', (ws) => {
                 }
                 
                 case "request": {
+                    
                     switch (data_name) {
                         case "MPU-6050": {
                         ws.send(JSON.stringify({
                             "From"     :   "Server",
                             "Type"     :   "Sensor",
                             "Name"     : "MPU-6050",
+                            "client_name": "GUI",
                             "delta_S.x":     MPU[0],
                             "delta_S.y":     MPU[1],
                             "delta_S.z":     MPU[2],
@@ -104,8 +113,9 @@ wss.on('connection', (ws) => {
                                 "From"     :   "Server",
                                 "Type"     :   "Sensor",
                                 "Name"     :      "ADS",
+                                "client_name": "GUI",
                                 "Lumosity":      ADS[0],
-                                "Bat_volt":      ADS[1],
+                                "Bat_Volt":      ADS[1],
                                 "Audio"   :      ADS[2]
                             })); 
                         break;}
@@ -115,9 +125,10 @@ wss.on('connection', (ws) => {
                                 "From"     :   "Server",
                                 "Type"     :   "Sensor",
                                 "Name"     :    "Sonar",
-                                "Sonar-1":      Sonar[0],
-                                "Sonar-2":      Sonar[1],
-                                "Sonar-3":      Sonar[2]
+                                "client_name": "GUI",
+                                "Sonar_1":      Sonar[0],
+                                "Sonar_2":      Sonar[1],
+                                "Sonar_3":      Sonar[2]
                             })); 
                         break;}
 
@@ -126,6 +137,7 @@ wss.on('connection', (ws) => {
                                 "From"     :   "Server",
                                 "Type"     :   "Sensor",
                                 "Name"     :    "Temperature",
+                                "client_name": "GUI",
                                 "Temp":      temperature
                             })); 
                         break;}

@@ -23,13 +23,15 @@ PCF8574 pcf8574(PCFaddr, I2C_SDA, I2C_SCL);
 //Array for holding sonar distance data
 float Sonar[3] = {0, 0, 0};
 //JSON object for storing data; change size to accomodate any needed data
-StaticJsonDocument<3> Sonar_Data; 
+StaticJsonDocument<500> Sonar_Data; 
 //Stringify JSON for setting over websockets
-char Sonar_Json[100]; 
+char Sonar_Json[200]; 
 
 //Initialization MCP function
 void PCF_setup(TwoWire T) {
-  pcf8574.begin();
+  Sonar_Data["type"] = "sensor";
+  Sonar_Data["Name"] = "Sonar";
+//  pcf8574.begin();
   pcf8574.pinMode(PCF_S1_Trig, OUTPUT); 
   pcf8574.pinMode(PCF_S1_Echo, INPUT);
   pcf8574.pinMode(PCF_S2_Trig, OUTPUT); 
@@ -73,7 +75,7 @@ void update_SONAR_DATA() {
   Sonar_Data["Sonar_1"] = Sonar[0];
   Sonar_Data["Sonar_2"] = Sonar[1];
   Sonar_Data["Sonar_3"] = Sonar[2];
-  serializeJson(Sonar_Data, Sonar_Json);
+  serializeJsonPretty(Sonar_Data, Sonar_Json);
 }
 
 //Flash LEDs 

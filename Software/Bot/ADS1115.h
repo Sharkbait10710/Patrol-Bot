@@ -12,18 +12,20 @@ uint8_t ADSaddr = 0x48;
 //Array for holding ADS data
 float ADS_DATA[3] = {0, 0, 0};
 //JSON object for storing data; change size to accomodate any needed data
-StaticJsonDocument<3> ADS_Data; 
+StaticJsonDocument<500> ADS_Data; 
 //Stringify JSON for setting over websockets
-char ADS_Json[100]; 
+char ADS_Json[200]; 
 
 //Initialization ADS function
 void ADS_Setup(TwoWire T) {
-  if (!ADS.begin(ADSaddr, &T)) {} //Confirm Connection
+  ADS_Data["type"] = "sensor";
+  ADS_Data["Name"] = "ADS";
+  //if (!ADS.begin(ADSaddr, &T)) {} //Confirm Connection
 }
 
 //Self-explanatory ADS data acqusition functions
 void update_Lumosity() { //Stable measurments???? Need cap?
-  ADS_DATA[0] = ADS.computeVolts(ADS.readADC_SingleEnded(0));
+  ADS_DATA[0] = ADS.readADC_SingleEnded(0);//ADS.computeVolts(ADS.readADC_SingleEnded(0));
 }
 void update_Bat_Volt() {
   ADS_DATA[1] = 4*ADS.computeVolts(ADS.readADC_SingleEnded(1));
@@ -36,8 +38,8 @@ void update_Audio() { //Only Audio is integer data
 //Record ADS measurements and stringifies it
 void update_ADS() {
   update_Lumosity();
-  update_Bat_Volt();
-  update_Audio();
+//  update_Bat_Volt();
+//  update_Audio();
   ADS_Data["Lumosity"] = ADS_DATA[0];
   ADS_Data["Bat_Volt"] = ADS_DATA[1];
   ADS_Data["Audio"] = ADS_DATA[2];

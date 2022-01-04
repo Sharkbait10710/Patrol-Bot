@@ -1,23 +1,39 @@
-const port = "3000";
+const port = "80";
 const ws = new WebSocket("ws://localhost:"+port);
 
 const initTime = (new Date()).getTime();
-
+var connected = false;
 ws.addEventListener("open", () => {
     console.log("We are connected!");
     ws.send(JSON.stringify({ 
         "type": "master-device", 
         "name": "GUI",
         "message": "trying to connect"}));
+    connected = true;
 });
 
+setInterval(function () {
+    ws.send(JSON.stringify({
+        "type": "request",
+        "Name": "MPU-6050"
+        }));
+    ws.send(JSON.stringify({
+        "type": "request",
+        "Name": "Sonar"
+        }));
+    ws.send(JSON.stringify({
+        "type": "request",
+        "Name": "ADS"
+        }));
+    console.log("Sent a request")}, 1000);
+
+ws.binaryType = "arraybuffer";
 ws.addEventListener("message", (message) => {
     //if (false) console.log('[Server] Recieved message: %s', message), document.getElementById('live');
-    console.log("[SERVER] " + message.data);
     try {
-        var data, data_name;
         data = JSON.parse(message.data);
-        data_name = data['name'];
+        var data, data_name;
+        data_name = data['Name'];
         console.log('data_name ' + data_name)
         switch (data_name) {
             case "MPU-6050": {
@@ -30,13 +46,13 @@ ws.addEventListener("message", (message) => {
             document.getElementById("delta_R.z").innerHTML = data["delta_R.z"];
             break;}
 
-            case "Sonar"   : {
+            case "Sonar": {
             document.getElementById("Sonar_1").innerHTML = data["Sonar_1"];
             document.getElementById("Sonar_2").innerHTML = data["Sonar_2"];
             document.getElementById("Sonar_3").innerHTML = data["Sonar_3"];
             break;}
 
-            case "ADS"     : {
+            case "ADS": {
             document.getElementById("Lumosity").innerHTML = data["Lumosity"];
             document.getElementById("Bat_Volt").innerHTML = data["Bat_Volt"];
             document.getElementById("Audio").innerHTML = data["Audio"];
@@ -54,22 +70,16 @@ ws.addEventListener("message", (message) => {
             default: break;
         }
     }
-    catch (e) {
-        try {
-            var bytes = new Uint8Array(message);
-            if (bytes) {
-                var binary= '';
-                var img = document.getElementById('live');
-                var len = bytes.byteLength;
-                for (var i = 0; i < len; i++)
-                    binary += String.fromCharCode(bytes[i]);
-                img.src = 'data:image/jpg;base64,'+window.btoa(binary);
-            }
-        }
-        catch (e) {console.log(e);}
+    catch(e) {
+        console.log("Something is off...");
+        console.log(message.data);
+        let TYPED_ARRAY = new Uint8Array(message.data);
+        const STRING_CHAR = String.fromCharCode.apply(null, TYPED_ARRAY);
+        let base64String = btoa(STRING_CHAR);
+        var img = document.getElementById('live');
+        console.log("data:image/jpg;base64," + base64String);
+        img.src = "data:image/jpg;base64," + base64String;
     }
-    try {data_name = data["name"];}
-    catch {data_name = "N/A";}
 });
 
 ws.addEventListener("close", () => {

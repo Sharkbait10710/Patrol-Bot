@@ -21,13 +21,15 @@ double delta_S[3] = {0, 0, 0}; //Position
 double delta_w[3] = {0, 0, 0}; //Ang Vel 
 double delta_R[3] = {0, 0, 0}; //Rotation
 //JSON object for storing data; change size to accomodate any needed data
-StaticJsonDocument<7> MPU_Data; 
+StaticJsonDocument<500> MPU_Data; 
 //Stringify JSON for setting over websockets
-char MPU_Json[100]; 
+char MPU_Json[500]; 
 
 //Initialization MPU function
 void MPU_setup(TwoWire T) {
-  if (!MPU.begin(MPUaddr, &T)) {} //Confirm Connection
+  MPU_Data["type"] = "sensor";
+  MPU_Data["Name"] = "MPU-6050";
+//  if (!MPU.begin(MPUaddr, &T)) {} //Confirm Connection
   MPU.setAccelerometerRange(MPU6050_RANGE_8_G);
   MPU.setGyroRange(MPU6050_RANGE_500_DEG);
   MPU.setFilterBandwidth(MPU6050_BAND_21_HZ);
@@ -65,7 +67,6 @@ void poll() {
   BLA::Matrix<3> IMU_accel; //Multiplies with all rotation matrix, in any order, to determine acceleration vector relative to initial xyz axes
   IMU_accel(1) = a.acceleration.x        ; IMU_accel(2) = a.acceleration.y        ; IMU_accel(3) = a.acceleration.z        ;
   BLA::Matrix<3> ref_Acc = x_rot*y_rot*z_rot*IMU_accel; //Acceleration vector relative to initial coordinate system
-
   //Update the velocities and positions
   for (int i = 0; i < 3; i++)
     delta_V[i] = delta_V[i] + ref_Acc(i+1)*Time;
@@ -82,7 +83,7 @@ void update_Pos_Rot() {
   MPU_Data["delta_R.x"] = delta_R[0];
   MPU_Data["delta_R.y"] = delta_R[1];
   MPU_Data["delta_R.z"] = delta_R[2];
-  MPU_Data["temp"     ] = temp.temperature;
-  serializeJson(MPU_Data, MPU_Json);
+  MPU_Data["temp"] = temp.temperature;
+  serializeJsonPretty(MPU_Data, MPU_Json);
 }
 #endif
