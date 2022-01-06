@@ -9,63 +9,115 @@
     <title>Patrol-Bot GUI</title>
 </head>
 <body>
-    <!-- START THE NAVBAR SECTION -->
-    <div class = "container">
-        <div class="row">
+    
+    <div class ="container bg-light">
+        <!-- navbar -->
+        <nav class="navbar fixed-top navbar-dark bg-primary">
+            <div class="container-fluid">
 
-            <div class="col-5">
-                <h2 id="IMU">MPU-6050</h2>
-                <table class="table table-striped">
+                <!-- Logo and Burger --> 
+                <a class="navbar-brand mb-0 h1" href="index.html">
+                    <img src="assets/imgs/rm373batch3-17.jpg" alt="GUI_logo" width="30" height="30" 
+                    class="d-inline-block align-text-top">
+                    Patrol Bot GUI 
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                aria-controls="navbarSupportedContent" 
+                aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Labels -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#Positioning">Positioning</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Lumosity</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Battery</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Camera</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Audio</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        
+        <br><br><br>
+
+        <!-- DATA DASHBOARD -->
+
+        <!-- MPU-6050 -->
+        <div class="row border border-primary rounded">
+            <div class="col">
+                <h2 id="Positioning" class="text-center">Positioning</h2>
+                <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Position (m)</th>
-                            <th scope="col">Orientation (°)</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">(cm)</th>
+                            <th scope="col">Orientation</th>
+                            <th scope="col">(°)</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                            <td id = "delta_S.x">delta_S.x</td>
-                            <td id = "delta_R.x">delta_R.x</td>
+                            <td id = "delta_S.x">X</td>
+                            <td id = "delta_S.x">N/A</td>
+                            <td id = "delta_R.x">Yaw</td>
+                            <td id = "delta_S.x">N/A</td>
                         </tr>
                         <tr>
-                            <td id = "delta_S.y">delta_S.y</td>
-                            <td id = "delta_R.y">delta_R.y</td>
+                            <td id = "delta_S.y">Y</td>
+                            <td id = "delta_R.y">N/A</td>
+                            <td id = "delta_S.x">Roll</td>
+                            <td id = "delta_S.x">N/A</td>
                         </tr>
                         <tr>
-                            <td id = "delta_S.z">delta_S.z</td>
-                            <td id = "delta_R.z">delta_R.z</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-5">
-                <h2 id="ADC">ADS1115</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Lumosity (lm)</th>
-                            <th scope="col">Bat_Volt (V)</th>
-                            <th scope="col">Audio (integer) </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td id = "Lumosity">Lumosity</td>
-                            <td id = "Bat_Volt">Bat_Volt</td>
-                            <td id = "Audio">Audio</td>
+                            <td id = "delta_S.z">Z</td>
+                            <td id = "delta_R.z">N/A</td>
+                            <td id = "delta_S.x">Pitch</td>
+                            <td id = "delta_S.x">N/A</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+        </div><br>
 
-            <div class="col">
-                <h2 id="Sonars">Sonar</h2>
-                <table class="table table-striped">
+        <div class="row d-flex justify-content-between">
+            <!-- LUMOSITY -->
+            <div class="col-5 border border-primary rounded">
+                <h2 class="text-center">Lumosity</h2>
+                <div class="row">
+                    <div class="col"><p class="text-primary fw-bolder text-center">N/A</p></div>
+                    <div class="col"><p class="text-primary fw-bolder text-center">(lm)</p></div>
+                </div>
+                <div class="row">
+                    <canvas id="lumosityChart" class="chart-container" style="position: relative; height:40%;"></canvas>
+                </div>
+            </div>
+
+            <!-- BATTERY -->
+            <div class="col-5 border border-primary rounded">
+                <h2 class="text-center">Battery</h2>
+                <div class="row">
+                    <div class="col"><p class="text-primary fw-bolder text-center">N/A</p></div>
+                    <div class="col"><p class="text-primary fw-bolder text-center">(V)</p></div>
+                </div>
+                <div class="row">
+                    <canvas id="batteryChart" class="chart-container" style="position: relative; height:40%;"></canvas>
+                </div>
+            </div>
+        </div><br>
+
+        <!-- Sonar -->
+        <div class="row border border-primary rounded">
+            <div class="col table-responsive">
+                <h2 id="Sonars" class="text-center">Sonar</h2>
+                <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Sonar (cm)</th>
+                            <th scope="col" style="width: 50%">Sonar</th>
+                            <th scope="col">(cm)</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -84,18 +136,20 @@
                       </tbody>
                   </table>
             </div>
-        </div>
+        </div><br>
 
-        <div class="row">
+        <div class="row border border-primary rounded">
             <div class="col text-center">
-                <h2>Camera</h2>
-                <img id='live' class="img-fluid img-thumbnail" alt="LIVE-CAM-FOOTAGE" src=''>
+                <h2 class="text-center">Camera</h2>
+                <img id='live' class="img-fluid img-thumbnail" style="width: 100%"alt="LIVE-CAM-FOOTAGE" src='assets/imgs/no_connected_cam.jpg'>
             </div>
-            <div class="col">
-                <canvas id="audioChart"></canvas>
-              </div>
-        </div>
-        
+        </div><br>
+
+        <div class="row border border-primary rounded">
+            <h2 class="text-center">Audio</h2>
+            <canvas id="audioChart"></canvas>
+          </div>
+    
     </div>
     <script src="assets/js/bootstrap.bundle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

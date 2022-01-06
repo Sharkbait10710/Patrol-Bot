@@ -2,33 +2,38 @@
 #define WEBSOCKET_H
 ////Utilize http://www.iotsharing.com/2020/03/demo-48-using-websocket-for-camera-live.html
 
-
+//Dependencies
 #include <Arduino.h>
 #include <ArduinoJson.h>
-
 #include <WiFi.h>
 #include <WiFiMulti.h>
 #include <WiFiClientSecure.h>
-
 #include <WebSocketsClient.h>
 
+//DEBUG 
 #define DEBUG true
+
+//Server Msg
 String WSMsg = "";
 
+//WS objects
 WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
 
+//WIFI Info
 const char* SSID = "BadWifi";
 const char* password = "Sanmina02";
 const char* server_IP = "192.168.0.20";
 int port = 80;
+
+//Specify serial port
 #define USE_SERIAL Serial
 
+//Camera
 #define sensor_t sensor_t_
 #include "esp_camera.h" 
 #undef sensor_t
 
-//Camera
 #define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
 #define XCLK_GPIO_NUM      0
@@ -124,7 +129,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
       //Let server know ESP32 is connecting
       StaticJsonDocument<200> ESP32_Profile;
       ESP32_Profile["type"] = "master-device";
-      ESP32_Profile["name"] = "ESP32-CAM";
+      ESP32_Profile["Name"] = "ESP32-CAM";
       ESP32_Profile["message"] = "trying to connect...";
       char Txt[150]; serializeJson(ESP32_Profile, Txt);
       webSocket.sendTXT(Txt);
@@ -159,15 +164,11 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
   }
 }
 
-
+//WS Setup
 void Wsetup() {
   USE_SERIAL.begin(115200);
   
   USE_SERIAL.setDebugOutput(true);
-
-  USE_SERIAL.println();
-  USE_SERIAL.println();
-  USE_SERIAL.println();
 
   for(uint8_t t = 4; t > 0; t--) {
     USE_SERIAL.printf("[SETUP] BOOT WAIT %d...\n", t);
@@ -175,8 +176,12 @@ void Wsetup() {
     delay(1000);
   }
 
-  USE_SERIAL.println("SSID: " + String(SSID));
-  USE_SERIAL.println("password: " + String(password));
+  if (DEBUG) {
+    USE_SERIAL.println("SSID: " + String(SSID));
+    USE_SERIAL.println("password: " + String(password));
+    USE_SERIAL.println("server_IP: " + String(server_IP));
+    USE_SERIAL.println("port: " + String(port));
+  }
   WiFiMulti.addAP(SSID, password);
 
   //WiFi.disconnect();
@@ -186,8 +191,6 @@ void Wsetup() {
   }
 
   // server address, port and URL
-  USE_SERIAL.println("server_IP: " + String(server_IP));
-  USE_SERIAL.println("port: " + String(port));
   webSocket.begin(server_IP, port, "/");
 
   // event handler

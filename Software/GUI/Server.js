@@ -13,6 +13,7 @@ const server = express()
 
 const wss = new SocketServer({server});
 
+DEBUG = false;
 //array of clients
 var lookup = {};
 var names = {};
@@ -37,27 +38,33 @@ wss.on('connection', (ws) => {
         try {
             data = JSON.parse(message);
             console.log("[CLIENT] Message:" + message);
-        }
-        catch (e) {
-            console.log("Caught a non-JSON format");
-            wss.clients.forEach(function each(client) {
-                if (names[client.id] == 'GUI') {
-                    client.send(message);
-                    console.log('SENT');
-                }
-            });
-        }
-        try {
-            var data, data_name;
             data = JSON.parse(message);
             data_name = data['Name'];
             switch (data["type"]) {
                 case "master-device": {
-                    ws.name=data_name; 
+                    ws.name=data_name;
+                    names[ws.name] = ws.id; 
+                    if (DEBUG) {
+                        console.log("data_name: " + data_name);
+                        console.log("ws.name: " + ws.name);
+                        console.log("names[ws.name]: " + names[ws.name]);
+                    }
                     if (data_name == 'GUI') console.log('GUI detected');
-                    names[ws.id] = 'GUI';
                     break;
                 }
+
+                case "redirect": {
+                    try {
+                        if (DEBUG) {
+                            console.log(data['message']);
+                            console.log("? "+data["recipient"]);
+                            console.log("?? "+names[data["recipient"]]);
+                        }
+                        lookup[names[data["recipient"]]].send(JSON.stringify(data['message']));
+                    } catch (e) {console.log(e); console.log("Recipient does not exist");}
+                    break;
+                }
+
                 case "sensor": {
                     
                     switch (data_name) {
@@ -150,21 +157,14 @@ wss.on('connection', (ws) => {
             }
         }
         catch (e) {
-            try {names['GUI'].send(message);}
-            catch (e) {console.log('No GUI detected');}
-        } //Camera Data: Binary
+            console.log("Caught a non-JSON format");
+            wss.clients.forEach(function each(client) {
+                if (names[client.id] == 'GUI') {
+                    client.send(message);
+                    console.log('SENT');
+                }
+            });
+        }
         
     })
 })
-
-
-// function showProps(obj, objName) { //DEBUGGING PURPOSES
-//     let result = '';
-//     for (let i in obj) {
-//       // obj.hasOwnProperty() is used to filter out properties from the object's prototype chain
-//       if (obj.hasOwnProperty(i)) {
-//         result += `${objName}.${i} = ${obj[i]}\n`;
-//       }
-//     }
-//     console.log(result);
-//   }
