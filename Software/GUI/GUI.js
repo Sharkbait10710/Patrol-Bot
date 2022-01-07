@@ -28,7 +28,7 @@ ws.addEventListener("close", () => {
 ws.addEventListener("message", (message) => {
     try { //If message can be parse, it's not binary
         data = JSON.parse(message.data);
-        data_name = "ADS"; //data['Name'];
+        data_name = data['Name'];
         if (DEBUG) console.log('data_name ' + data_name);
         switch (data_name) {
 
@@ -80,14 +80,14 @@ ws.addEventListener("message", (message) => {
 
 //Server Requests
 setInterval(function () {
-    // ws.send(JSON.stringify({
-    //     "type": "request",
-    //     "Name": "MPU-6050"
-    //     }));
-    // ws.send(JSON.stringify({
-    //     "type": "request",
-    //     "Name": "Sonar"
-    //     }));
+    ws.send(JSON.stringify({
+        "type": "request",
+        "Name": "MPU-6050"
+        }));
+    ws.send(JSON.stringify({
+        "type": "request",
+        "Name": "Sonar"
+        }));
     ws.send(JSON.stringify({
         "type": "request",
         "Name": "ADS"

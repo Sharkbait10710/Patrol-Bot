@@ -13,7 +13,7 @@ const server = express()
 
 const wss = new SocketServer({server});
 
-DEBUG = true;
+DEBUG = false;
 //array of clients
 var lookup = {};
 var names = {};
@@ -36,10 +36,11 @@ wss.on('connection', (ws) => {
 
     ws.on('message', (message) => {
         try {
-            if (DEBUG) console.log("[CLIENT] Message:" + message);
+            data = JSON.parse(message);
+            console.log("[CLIENT] Message:" + message);
             data = JSON.parse(message);
             data_name = data['Name'];
-            switch (data_name) {
+            switch (data["type"]) {
                 case "master-device": {
                     ws.name=data_name;
                     names[ws.name] = ws.id; 
@@ -52,7 +53,7 @@ wss.on('connection', (ws) => {
                     break;
                 }
 
-                case "redirect": { //ESP32 device: ESP32-CAM
+                case "redirect": {
                     try {
                         if (DEBUG) {
                             console.log(data['message']);
@@ -142,7 +143,7 @@ wss.on('connection', (ws) => {
                             ws.send(JSON.stringify({
                                 "From"     :   "Server",
                                 "Type"     :   "Sensor",
-                                "Name"     :    "ADS",
+                                "Name"     :    "Temperature",
                                 "client_name": "GUI",
                                 "Temp":      temperature
                             })); 
@@ -167,3 +168,13 @@ wss.on('connection', (ws) => {
         
     })
 })
+
+// setInterval(function () {
+//     for (i = 0; i < 6; i++) {
+//         MPU[i] = (Math.random()*10000)%4096;
+//     }
+//     for (i = 0; i < 3; i++) {
+//         ADS[i] = (Math.random()*10000)%4096;
+//         Sonar[i] = (Math.random()*10000)%4096;
+//     }
+//     console.log("Sent a request")}, 1000);
