@@ -12,9 +12,6 @@ unsigned long Clock;
 //I2C
 TwoWire I2C = TwoWire(0);
 
-//Motor Speeds; sent from server / GUI
-String input_Spd[2] = {"0", "0"};
-
 //Dual-Core; cannot connect to server and run motors / sensors
 //TaskHandle_t DualTask;
 void DualTaskcode( void * pvParameters ){
@@ -28,15 +25,9 @@ void DualTaskcode( void * pvParameters ){
     //Constantly poll and send sensor data to server
     update_Pos_Rot();
     //update_ADS(); //retest when ads comes home
-    //webSocket.sendTXT(ADS_Json);
     update_SONAR_DATA();
     delay(10);
   }
-}
-
-//WSHandler
-void evaluateWSMsg(String& str) {
-  str = "";
 }
 
 void setup() {
@@ -67,7 +58,6 @@ void setup() {
 
 void loop() {
   webSocket.loop();
-  evaluateWSMsg(WSMsg);
 //  webSocket.sendTXT(MPU_Json);
 //  webSocket.sendTXT(Sonar_Json);
 //  liveCam();

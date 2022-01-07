@@ -13,7 +13,7 @@ const server = express()
 
 const wss = new SocketServer({server});
 
-DEBUG = false;
+DEBUG = true;
 //array of clients
 var lookup = {};
 var names = {};
@@ -36,11 +36,10 @@ wss.on('connection', (ws) => {
 
     ws.on('message', (message) => {
         try {
-            data = JSON.parse(message);
-            console.log("[CLIENT] Message:" + message);
+            if (DEBUG) console.log("[CLIENT] Message:" + message);
             data = JSON.parse(message);
             data_name = data['Name'];
-            switch (data["type"]) {
+            switch (data_name) {
                 case "master-device": {
                     ws.name=data_name;
                     names[ws.name] = ws.id; 
@@ -53,7 +52,7 @@ wss.on('connection', (ws) => {
                     break;
                 }
 
-                case "redirect": {
+                case "redirect": { //ESP32 device: ESP32-CAM
                     try {
                         if (DEBUG) {
                             console.log(data['message']);
@@ -143,7 +142,7 @@ wss.on('connection', (ws) => {
                             ws.send(JSON.stringify({
                                 "From"     :   "Server",
                                 "Type"     :   "Sensor",
-                                "Name"     :    "Temperature",
+                                "Name"     :    "ADS",
                                 "client_name": "GUI",
                                 "Temp":      temperature
                             })); 

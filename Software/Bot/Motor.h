@@ -26,6 +26,7 @@ void Motor_Setup() {
 //Run functions take in an int 0-100 to drive the motor from 0 - 100% speed
 void run_A(int Speed) {
   if (Speed == speed[0]) return; //Quit function if speed remains unchanged
+  Serial.println("THIS SHOULD NOT APPEAR");
   bool Dir = true;
   speed[0] = Speed; //Update speed data
   if (Speed < 0) {Dir = false; Speed = -1*Speed;} //Switch dir if speed is negative
@@ -35,6 +36,7 @@ void run_A(int Speed) {
 }
 void run_B(int Speed) {
   if (Speed == speed[1]) return;
+  Serial.println("THIS SHOULD NOT APPEAR");
   bool Dir = true;
   speed[1] = Speed;
   if (Speed < 0) {Dir = false; Speed = -1*Speed;}

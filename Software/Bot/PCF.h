@@ -38,6 +38,7 @@ void PCF_setup(TwoWire T) {
   pcf8574.pinMode(PCF_S2_Echo, INPUT);
   pcf8574.pinMode(PCF_S3_Trig, OUTPUT); 
   pcf8574.pinMode(PCF_S3_Echo, INPUT);
+  pinMode(33, OUTPUT); //Onboard red-LED
 }
 
 //Emit propogating sound waves for measuring distance (cm) using HC-SR04
@@ -90,5 +91,21 @@ void flash_LED_2(int T) {
   delay(T);
   pcf8574.digitalWrite(PCF_LED_2, LOW);
   delay(T);
+}
+
+void onboard_Red_LED(int T) {
+  pcf8574.digitalWrite(33, HIGH);
+  delay(T);
+  pcf8574.digitalWrite(33, LOW);
+  delay(T);
+}
+
+void flash_code_handler (int code[], unsigned Size) {
+  if (Size % 2 != 0) {Serial.println("code length error"); return;}
+  for (int i = 0; i < Size; i = i + 2) {
+    if (code[i] == 1) flash_LED_1(code[i+1]);
+    else if (code[i] == 2) flash_LED_2(code[i+1]);
+    else if (code[i] == 3) onboard_Red_LED(code[i+1]);
+  }
 }
 #endif

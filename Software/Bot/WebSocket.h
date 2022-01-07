@@ -14,7 +14,6 @@
 #define DEBUG true
 
 //Server Msg
-String WSMsg = "";
 
 //WS objects
 WiFiMulti WiFiMulti;
@@ -100,6 +99,9 @@ void liveCam(){
   esp_camera_fb_return(fb);
 }
 
+//Motor Speeds; sent from server / GUI
+String input_Spd[2] = {"0", "0"};
+
 void hexdump(const void *mem, uint32_t len, uint8_t cols = 16) {
   const uint8_t* src = (const uint8_t*) mem;
   USE_SERIAL.printf("\n[HEXDUMP] Address: 0x%08X len: 0x%X (%d)", (ptrdiff_t)src, len, len);
@@ -138,15 +140,21 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 
     //Let Arduino program know if there is WS Message
     case WStype_TEXT: {
+      StaticJsonDocument<400> server_JSON;
       char buffer[300];
       sprintf(buffer, "%s\n", payload);
-      DynamicJsonDocument server_JSON(1024);
-      DeserializationError err = deserializeJson(server_JSON, buffer);
-      if (err) {USE_SERIAL.println("Error reading server_JSON"); break;}
-      if (server_JSON["client_name"] != "ESP-32") break;
       if (DEBUG) USE_SERIAL.printf("[WSc] get text: %s\n", payload);
-      WSMsg = buffer;}
+      
+      //If sent data isn't JSON, ERROR
+      DeserializationError error = deserializeJson(server_JSON, buffer);
+      if (error) {USE_SERIAL.println("Error reading server_JSON"); break;}
+
+      if (server_JSON["type"] == "motor") {
+        String temp_left = server_JSON["left"]; input_Spd[0] = String(temp_left);
+        String temp_right = server_JSON["right"]; input_Spd[1] = String(temp_right);
+      }
       break;
+    }
 
     //Call the hexdump function.
     case WStype_BIN:

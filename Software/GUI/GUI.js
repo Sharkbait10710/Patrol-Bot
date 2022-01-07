@@ -28,8 +28,8 @@ ws.addEventListener("close", () => {
 ws.addEventListener("message", (message) => {
     try { //If message can be parse, it's not binary
         data = JSON.parse(message.data);
-        data_name = data['Name'];
-        if (DEBUG) console.log('data_name ' + data_name)
+        data_name = "ADS"; //data['Name'];
+        if (DEBUG) console.log('data_name ' + data_name);
         switch (data_name) {
 
             case "MPU-6050": {
@@ -51,7 +51,6 @@ ws.addEventListener("message", (message) => {
             case "ADS": {
             document.getElementById("Lumosity").innerHTML = data["Lumosity"];
             document.getElementById("Bat_Volt").innerHTML = data["Bat_Volt"];
-            document.getElementById("Audio").innerHTML = data["Audio"];
             time_axis.push(((new Date()).getTime() - initTime)/1000);
             audio_data.push(data["Audio"]);
             if (time_axis.length > 500) {
@@ -80,20 +79,20 @@ ws.addEventListener("message", (message) => {
 });
 
 //Server Requests
-// setInterval(function () {
-//     ws.send(JSON.stringify({
-//         "type": "request",
-//         "Name": "MPU-6050"
-//         }));
-//     ws.send(JSON.stringify({
-//         "type": "request",
-//         "Name": "Sonar"
-//         }));
-//     ws.send(JSON.stringify({
-//         "type": "request",
-//         "Name": "ADS"
-//         }));
-//     console.log("Sent a request")}, 1000);
+setInterval(function () {
+    // ws.send(JSON.stringify({
+    //     "type": "request",
+    //     "Name": "MPU-6050"
+    //     }));
+    // ws.send(JSON.stringify({
+    //     "type": "request",
+    //     "Name": "Sonar"
+    //     }));
+    ws.send(JSON.stringify({
+        "type": "request",
+        "Name": "ADS"
+        }));
+    console.log("Sent a request")}, 1000);
 
 
 
