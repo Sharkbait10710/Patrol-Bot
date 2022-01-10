@@ -40,25 +40,36 @@ ws.addEventListener("message", (message) => {
             document.getElementById("delta_R.x").innerHTML = data["delta_R.x"];
             document.getElementById("delta_R.y").innerHTML = data["delta_R.y"];
             document.getElementById("delta_R.z").innerHTML = data["delta_R.z"];
+            
+            currentPosition = {"x": data["delta_S.x"], "y": data["delta_S.y"]};
+            scatterPosition.push(
+                {x: data["delta_S.x"], y: data["delta_S.y"]}
+            ); scatterChart.update();
+
             break;}
 
             case "Sonar": {
             document.getElementById("Sonar_1").innerHTML = data["Sonar_1"];
             document.getElementById("Sonar_2").innerHTML = data["Sonar_2"];
             document.getElementById("Sonar_3").innerHTML = data["Sonar_3"];
+            scatterSonar.push(
+                {x: data["Sonar_1"] + currentPosition["x"], y: data["Sonar_2"] + currentPosition["y"]}
+            ); scatterChart.update();
             break;}
 
             case "ADS": {
             document.getElementById("Lumosity").innerHTML = data["Lumosity"];
             document.getElementById("Bat_Volt").innerHTML = data["Bat_Volt"];
+            lumosity[0] = data["Lumosity"];
+            lumosityChart.update();
+            battery[0] = data["Bat_Volt"];
+            batteryChart.update();
             time_axis.push(((new Date()).getTime() - initTime)/1000);
             audio_data.push(data["Audio"]);
             if (time_axis.length > 500) {
                 time_axis.shift();
-                audio_Chart.options.scales.x.min += audio_data.at(-1);
-                audio_Chart.options.scales.x.max += audio_data.at(-1);
+                audio_data.shift();
             }
-            if (audio_data.length > 500) audio_data.shift();
             audioChart.update();
             break;}
 
@@ -92,7 +103,7 @@ setInterval(function () {
         "type": "request",
         "Name": "ADS"
         }));
-    console.log("Sent a request")}, 1000);
+    console.log("Sent a request")}, 100);
 
 
 
@@ -123,9 +134,9 @@ const audioConfig = {
         animation: false,
         scales: {
             x:{
-                max: 10, min: 0,
+                max: 500, min: 0,
                 ticks: {stepSize: 0.5},
-                display: true
+                display: true,
             },
             y: {
                 max: 4096, min: 0,
@@ -162,9 +173,9 @@ const lumosityConfig = {
         }
     },
   };
-batteryChart = new Chart(document.getElementById('lumosityChart'), lumosityConfig);
+lumosityChart = new Chart(document.getElementById('lumosityChart'), lumosityConfig);
 
-/*==Lumosity Graph==*/
+/*==Battery Graph==*/
 battery = [11];
 const batteryData = {
     labels: [""],
@@ -192,3 +203,41 @@ const batteryConfig = {
     },
   };
 batteryChart = new Chart(document.getElementById('batteryChart'), batteryConfig);
+
+
+/*==Position Plot==*/
+scatterSonar = [];
+scatterPosition = [{x: 0, y: 0}];
+currentPosition = {x: 0, y: 0};
+
+const scatterData = {
+datasets: [{
+    label: 'Scatter Dataset',
+    data: scatterSonar,
+    backgroundColor: 'rgb(255, 99, 132)'
+    },{
+    label: 'Scatter Dataset',
+    data: scatterPosition,
+    backgroundColor: 'rgb(0, 99, 132)'
+    }],
+};
+
+const scatterConfig = {
+    type: 'scatter',
+    data: scatterData,
+    options: {
+        scales: {
+            x: {
+                type: 'linear',
+                position: 'bottom',
+                max: 10, min: -10
+            },
+            y: {
+                max: 10, min: -10
+            }
+        }
+    }
+};
+
+scatterChart = new Chart(document.getElementById('positionPlot'), scatterConfig);
+scatterChart.options.animation = false;
