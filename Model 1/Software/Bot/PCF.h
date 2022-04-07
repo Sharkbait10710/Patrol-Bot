@@ -15,10 +15,13 @@
 #define PCF_LED_2 P5
 
 //Redefine SCL/SDA pins
-#define I2C_SCL 16
-#define I2C_SDA 0
+uint8_t I2C_SCL = 16;
+uint8_t I2C_SDA = 0;
 uint8_t PCFaddr = 0x20;
-PCF8574 pcf8574(PCFaddr, I2C_SDA, I2C_SCL);
+
+//I2C
+TwoWire I2C = TwoWire(0);
+PCF8574 pcf8574(&I2C, PCFaddr, I2C_SDA, I2C_SCL);
 
 //Array for holding sonar distance data
 float Sonar[3] = {0, 0, 0};
@@ -27,18 +30,26 @@ StaticJsonDocument<500> Sonar_Data;
 //Stringify JSON for setting over websockets
 char Sonar_Json[200]; 
 
-//Initialization MCP function
-void PCF_setup(TwoWire T) {
-  Sonar_Data["type"] = "sensor";
-  Sonar_Data["Name"] = "Sonar";
-//  pcf8574.begin();
-  pcf8574.pinMode(PCF_S1_Trig, OUTPUT); 
-  pcf8574.pinMode(PCF_S1_Echo, INPUT);
-  pcf8574.pinMode(PCF_S2_Trig, OUTPUT); 
-  pcf8574.pinMode(PCF_S2_Echo, INPUT);
-  pcf8574.pinMode(PCF_S3_Trig, OUTPUT); 
-  pcf8574.pinMode(PCF_S3_Echo, INPUT);
-  pinMode(33, OUTPUT); //Onboard red-LED
+void flash_LED_1(int T) {
+  pcf8574.digitalWrite(PCF_LED_1, HIGH);
+  delay(T);
+  pcf8574.digitalWrite(PCF_LED_1, LOW);
+  delay(T);
+}
+
+void flash_LED_2(int T) {
+  pcf8574.digitalWrite(PCF_LED_2, HIGH);
+  delay(T);
+  pcf8574.digitalWrite(PCF_LED_2, LOW);
+  delay(T);
+}
+
+//Onboard LED
+void onboard_Red_LED(int T) {
+  digitalWrite(33, LOW);
+  delay(T);
+  digitalWrite(33, HIGH);
+  delay(T);
 }
 
 //Emit propogating sound waves for measuring distance (cm) using HC-SR04
@@ -77,27 +88,6 @@ void update_SONAR_DATA() {
   Sonar_Data["Sonar_2"] = Sonar[1];
   Sonar_Data["Sonar_3"] = Sonar[2];
   serializeJsonPretty(Sonar_Data, Sonar_Json);
-}
-
-//Flash LEDs 
-void flash_LED_1(int T) {
-  pcf8574.digitalWrite(PCF_LED_1, HIGH);
-  delay(T);
-  pcf8574.digitalWrite(PCF_LED_1, LOW);
-  delay(T);
-}
-void flash_LED_2(int T) {
-  pcf8574.digitalWrite(PCF_LED_2, HIGH);
-  delay(T);
-  pcf8574.digitalWrite(PCF_LED_2, LOW);
-  delay(T);
-}
-
-void onboard_Red_LED(int T) {
-  pcf8574.digitalWrite(33, HIGH);
-  delay(T);
-  pcf8574.digitalWrite(33, LOW);
-  delay(T);
 }
 
 void flash_code_handler (int code[], unsigned Size) {

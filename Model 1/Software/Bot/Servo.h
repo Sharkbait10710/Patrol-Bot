@@ -4,7 +4,7 @@
 #include <ESP32Servo.h>
 
 //Identify all hardware pins
-#define servoPin 3
+#define servoPin 2
 //Create MCP object
 Servo servo;
 //Initialize servo position; do not attach cam to servo before determining that servo is stable

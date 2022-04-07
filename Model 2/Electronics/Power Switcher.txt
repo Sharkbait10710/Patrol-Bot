@@ -1,0 +1,12 @@
+==Battery Supply==
+1) When adapter is not present, the adapter node would rail LOW b/c of the 500K pull-down resistor.
+2) The Sig pin would rail HIGH to the battery voltage, the M5 PMOS would close, and the active supply 
+    would be the battery.
+
+==Adapter Supply==    
+1) When the adapter is present, the adapter node would rail HIGH.
+2) The Sig pin would then rail LOW, the M5 PMOS would open, and the active supply would no longer
+    be the battery.
+3) On the other hand, when the Sig pin rails LOW, the Adapter would become the active supply.
+4) Also, the LM317 input would rail HIGH, the M7 NMOS would close, the M8 PMOS would
+    close, and the LM317 output would be shorted to the battery.

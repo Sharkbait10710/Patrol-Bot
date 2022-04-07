@@ -1,0 +1,9 @@
+==Purpose==
+- Provide audio and camera footage for surveillance purposes
+- Autonomous feature for mapping out a room
+- Hides from potential threat and focuses camera on that threat
+
+
+==Constraints==
+- Uses cheap motors 
+- 3D printable 

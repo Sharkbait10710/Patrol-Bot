@@ -1,0 +1,21 @@
+Circuit: * C:\Projects\Patrol-Bot\Model 2\Electronics\POwer Switcher\Design 1.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Mon Apr 04 22:42:10 2022
+Total elapsed time: 0.171 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 12806
+traniter = 12780
+tranpoints = 4128
+accept = 3320
+rejected = 808
+matrix size = 54
+fillins = 37
+solver = Normal
+Matrix Compiler1: 5.23 KB object code size  1.1/0.8/[0.4]
+Matrix Compiler2: off  [0.6]/2.7/0.7
+

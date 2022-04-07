@@ -1,0 +1,7 @@
+==Power Supply==
+- Adapter: 12 V
+- Batteries: ~12 V
+
+==Sensors==
+- Monitor:  Active Supply voltage
+            

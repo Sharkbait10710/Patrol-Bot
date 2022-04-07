@@ -16,7 +16,7 @@ ws.addEventListener("open", () => {
     if (DEBUG) console.log("We are connected!");
     ws.send(JSON.stringify({ 
         "type": "master-device", 
-        "name": "GUI",
+        "Name": "GUI",
         "message": "trying to connect"}));
     connected = true;
 });
@@ -26,6 +26,7 @@ ws.addEventListener("close", () => {
 })
 
 ws.addEventListener("message", (message) => {
+    console.log(message.data);
     try { //If message can be parse, it's not binary
         data = JSON.parse(message.data);
         data_name = data['Name'];
@@ -90,20 +91,20 @@ ws.addEventListener("message", (message) => {
 });
 
 //Server Requests
-setInterval(function () {
-    ws.send(JSON.stringify({
-        "type": "request",
-        "Name": "MPU-6050"
-        }));
-    ws.send(JSON.stringify({
-        "type": "request",
-        "Name": "Sonar"
-        }));
-    ws.send(JSON.stringify({
-        "type": "request",
-        "Name": "ADS"
-        }));
-    console.log("Sent a request")}, 100);
+// setInterval(function () {
+//     ws.send(JSON.stringify({
+//         "type": "request",
+//         "Name": "MPU-6050"
+//         }));
+//     ws.send(JSON.stringify({
+//         "type": "request",
+//         "Name": "Sonar"
+//         }));
+//     ws.send(JSON.stringify({
+//         "type": "request",
+//         "Name": "ADS"
+//         }));
+//     console.log("Sent a request")}, 100);
 
 
 

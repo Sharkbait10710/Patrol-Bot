@@ -26,14 +26,15 @@ StaticJsonDocument<500> MPU_Data;
 char MPU_Json[500]; 
 
 //Initialization MPU function
-void MPU_setup(TwoWire T) {
+bool MPU_setup(TwoWire T) {
   MPU_Data["type"] = "sensor";
   MPU_Data["Name"] = "MPU-6050";
-//  if (!MPU.begin(MPUaddr, &T)) {} //Confirm Connection
+  if (!MPU.begin(MPUaddr, &T)) return false; //Confirm Connection
   MPU.setAccelerometerRange(MPU6050_RANGE_8_G);
   MPU.setGyroRange(MPU6050_RANGE_500_DEG);
   MPU.setFilterBandwidth(MPU6050_BAND_21_HZ);
   MPU.getEvent(&a, &g, &temp);
+  return true;
 }
 
 //Poll MPU instruments and stringifies data
@@ -76,7 +77,7 @@ void poll() {
 
 //Polls measurments from MPUand stringifies them
 void update_Pos_Rot() {
-  poll();
+  //poll();
   MPU_Data["delta_S.x"] = delta_S[0];
   MPU_Data["delta_S.y"] = delta_S[1];
   MPU_Data["delta_S.z"] = delta_S[2];

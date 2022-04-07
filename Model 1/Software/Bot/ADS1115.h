@@ -17,10 +17,11 @@ StaticJsonDocument<500> ADS_Data;
 char ADS_Json[200]; 
 
 //Initialization ADS function
-void ADS_Setup(TwoWire T) {
+bool ADS_Setup(TwoWire T) {
   ADS_Data["type"] = "sensor";
   ADS_Data["Name"] = "ADS";
-  //if (!ADS.begin(ADSaddr, &T)) {} //Confirm Connection
+  if (!ADS.begin(ADSaddr, &T)) return false; //Confirm Connection
+  return true;
 }
 
 //Self-explanatory ADS data acqusition functions
@@ -37,13 +38,15 @@ void update_Audio() { //Only Audio is integer data
 
 //Record ADS measurements and stringifies it
 void update_ADS() {
-  update_Lumosity();
+//  Serial.println("ADS");
+//  update_Lumosity();
 //  update_Bat_Volt();
 //  update_Audio();
   ADS_Data["Lumosity"] = ADS_DATA[0];
   ADS_Data["Bat_Volt"] = ADS_DATA[1];
   ADS_Data["Audio"] = ADS_DATA[2];
   serializeJson(ADS_Data, ADS_Json);
+  delay(1000);
 }
 
 #endif

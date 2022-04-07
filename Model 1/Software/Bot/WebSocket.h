@@ -9,9 +9,10 @@
 #include <WiFiMulti.h>
 #include <WiFiClientSecure.h>
 #include <WebSocketsClient.h>
+#include "PCF.h"
 
 //DEBUG 
-#define DEBUG true
+#define DEBUG false
 
 //Server Msg
 
@@ -22,7 +23,7 @@ WebSocketsClient webSocket;
 //WIFI Info
 const char* SSID = "BadWifi";
 const char* password = "Sanmina02";
-const char* server_IP = "192.168.0.20";
+const char* server_IP = "192.168.0.11";
 int port = 80;
 
 //Specify serial port
@@ -80,7 +81,7 @@ void configCamera(){
 
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
-    Serial.printf("Camera init failed with error 0x%x", err);
+    //Serial.printf("Camera init failed with error 0x%x", err);
     return;
   }
 }
@@ -89,7 +90,7 @@ void liveCam(){
   //capture a frame
   camera_fb_t * fb = esp_camera_fb_get();
   if (!fb) {
-      Serial.println("Frame buffer could not be acquired");
+      //Serial.println("Frame buffer could not be acquired");
       return;
   }
   //Send binary camera data to server
@@ -104,15 +105,15 @@ String input_Spd[2] = {"0", "0"};
 
 void hexdump(const void *mem, uint32_t len, uint8_t cols = 16) {
   const uint8_t* src = (const uint8_t*) mem;
-  USE_SERIAL.printf("\n[HEXDUMP] Address: 0x%08X len: 0x%X (%d)", (ptrdiff_t)src, len, len);
+  //USE_SERIAL.printf("\n[HEXDUMP] Address: 0x%08X len: 0x%X (%d)", (ptrdiff_t)src, len, len);
   for(uint32_t i = 0; i < len; i++) {
     if(i % cols == 0) {
-      USE_SERIAL.printf("\n[0x%08X] 0x%08X: ", (ptrdiff_t)src, i);
+      //USE_SERIAL.printf("\n[0x%08X] 0x%08X: ", (ptrdiff_t)src, i);
     }
-    USE_SERIAL.printf("%02X ", *src);
+    //USE_SERIAL.printf("%02X ", *src);
     src++;
   }
-  USE_SERIAL.printf("\n");
+  //USE_SERIAL.printf("\n");
 }
 
 //WS handler function that reacts to different WS events
@@ -122,12 +123,12 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 
     //Let the user know that WS is disconnected
     case WStype_DISCONNECTED:
-      USE_SERIAL.printf("[WSc] Disconnected!\n");
+      //USE_SERIAL.printf("[WSc] Disconnected!\n");
       break;
 
     //Let the user know that WS is connected
     case WStype_CONNECTED: {
-      USE_SERIAL.printf("[WSc] Connected to url: %s\n", payload);
+      //USE_SERIAL.printf("[WSc] Connected to url: %s\n", payload);
       //Let server know ESP32 is connecting
       StaticJsonDocument<200> ESP32_Profile;
       ESP32_Profile["type"] = "master-device";
@@ -135,7 +136,8 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
       ESP32_Profile["message"] = "trying to connect...";
       char Txt[150]; serializeJson(ESP32_Profile, Txt);
       webSocket.sendTXT(Txt);
-      if (DEBUG) USE_SERIAL.println(Txt);}
+      //if (DEBUG) USE_SERIAL.println(Txt);
+      }
       break;
 
     //Let Arduino program know if there is WS Message
@@ -143,11 +145,11 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
       StaticJsonDocument<400> server_JSON;
       char buffer[300];
       sprintf(buffer, "%s\n", payload);
-      if (DEBUG) USE_SERIAL.printf("[WSc] get text: %s\n", payload);
+      //if (DEBUG) USE_SERIAL.printf("[WSc] get text: %s\n", payload);
       
       //If sent data isn't JSON, ERROR
       DeserializationError error = deserializeJson(server_JSON, buffer);
-      if (error) {USE_SERIAL.println("Error reading server_JSON"); break;}
+      //if (error) {USE_SERIAL.println("Error reading server_JSON"); break;}
 
       if (server_JSON["type"] == "motor") {
         String temp_left = server_JSON["left"]; input_Spd[0] = String(temp_left);
@@ -158,7 +160,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 
     //Call the hexdump function.
     case WStype_BIN:
-      if (DEBUG) USE_SERIAL.printf("[WSc] get binary length: %u\n", length);
+      //if (DEBUG) USE_SERIAL.printf("[WSc] get binary length: %u\n", length);
       hexdump(payload, length);
       break;
 
@@ -174,8 +176,6 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
 
 //WS Setup
 void Wsetup() {
-  USE_SERIAL.begin(115200);
-  
   USE_SERIAL.setDebugOutput(true);
 
   for(uint8_t t = 4; t > 0; t--) {
@@ -195,6 +195,7 @@ void Wsetup() {
   //WiFi.disconnect();
   while(WiFiMulti.run() != WL_CONNECTED) {
     USE_SERIAL.println("CONNECTING");
+    onboard_Red_LED(100);
     delay(100);
   }
 

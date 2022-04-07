@@ -7,8 +7,8 @@
 #define In2A 15
 #define pwmB 4
 #define In1B 14
-#define In2B 2
-#define Stby 1
+#define In2B 3
+#define Stby 10
 
 int speed[2] = {0, 0};
 void Motor_Setup() {

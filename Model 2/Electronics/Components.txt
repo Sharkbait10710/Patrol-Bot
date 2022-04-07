@@ -1,0 +1,5 @@
+==Power Switcher==
+- MOSFETS:
+    1) NPN: AO3400 https://www.amazon.com/Todiys-A03400A-AO3400A-N-Channel-Transistor/dp/B08RHJG79T/ref=sr_1_4?crid=MT1HAYMJZKT5&keywords=smd+mosfet&qid=1647274724&sprefix=smd+mosfets%2Caps%2C99&sr=8-4
+    2) PNP: AO3401 https://www.amazon.com/Todiys-100Pcs-P-Channel-Transistor-AO3401A/dp/B08RHFLH1K/ref=sr_1_5?crid=MT1HAYMJZKT5&keywords=smd+mosfet&qid=1647274724&sprefix=smd+mosfets%2Caps%2C99&sr=8-5
+    

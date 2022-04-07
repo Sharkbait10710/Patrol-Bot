@@ -16,8 +16,6 @@ const wss = new SocketServer({server});
 DEBUG = false;
 //array of clients
 var lookup = {};
-var names = {};
-
 //Data
 var MPU   = [0, 0, 0, 0, 0, 0];
 var ADS   = [0, 0, 20];
@@ -35,6 +33,7 @@ wss.on('connection', (ws) => {
     })
 
     ws.on('message', (message) => {
+        console.log(""+message);
         try {
             data = JSON.parse(message);
             console.log("[CLIENT] Message:" + message);
@@ -43,11 +42,9 @@ wss.on('connection', (ws) => {
             switch (data["type"]) {
                 case "master-device": {
                     ws.name=data_name;
-                    names[ws.name] = ws.id; 
                     if (DEBUG) {
                         console.log("data_name: " + data_name);
                         console.log("ws.name: " + ws.name);
-                        console.log("names[ws.name]: " + names[ws.name]);
                     }
                     if (data_name == 'GUI') console.log('GUI detected');
                     break;
@@ -159,7 +156,7 @@ wss.on('connection', (ws) => {
         catch (e) {
             console.log("Caught a non-JSON format");
             wss.clients.forEach(function each(client) {
-                if (names[client.id] == 'GUI') {
+                if (client.name == 'GUI') {
                     client.send(message);
                     console.log('SENT');
                 }
@@ -171,16 +168,16 @@ wss.on('connection', (ws) => {
 
 // setInterval(function () {
 //     //For random
-//     // for (i = 0; i < 6; i++) {
-//     //     MPU[i] = Math.random() * 20 - 10;
-//     // }
-//     // for (i = 0; i < 2; i++) {
-//     //     ADS[i] = Math.random() * 12;
-//     // }
-//     // ADS[2] = Math.floor(Math.random() * 4096);
-//     // for (i = 0; i < 3; i++) {
-//     //     Sonar[i] = Math.floor(Math.random() * 10);
-//     // }
+//     for (i = 0; i < 6; i++) {
+//         MPU[i] = Math.random() * 20 - 10;
+//     }
+//     for (i = 0; i < 2; i++) {
+//         ADS[i] = Math.random() * 12;
+//     }
+//     ADS[2] = Math.floor(Math.random() * 4096);
+//     for (i = 0; i < 3; i++) {
+//         Sonar[i] = Math.floor(Math.random() * 10);
+//     }
 //     const time = new Date();
 //     MPU[0] = 7*Math.cos(time.getTime());
 //     MPU[1] = 7*Math.sin(time.getTime());
