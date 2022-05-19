@@ -1,3 +1,0 @@
-Perspective: front side with motor screw terminals top left
-height: 89.5mm
-width: 101mm
