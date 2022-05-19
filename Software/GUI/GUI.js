@@ -212,11 +212,11 @@ currentPosition = {x: 0, y: 0};
 
 const scatterData = {
 datasets: [{
-    label: 'Scatter Dataset',
+    label: 'Sonar',
     data: scatterSonar,
     backgroundColor: 'rgb(255, 99, 132)'
     },{
-    label: 'Scatter Dataset',
+    label: 'Position',
     data: scatterPosition,
     backgroundColor: 'rgb(0, 99, 132)'
     }],

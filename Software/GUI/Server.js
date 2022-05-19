@@ -169,19 +169,19 @@ wss.on('connection', (ws) => {
     })
 })
 
-// setInterval(function () {
-//     //For random
-//     // for (i = 0; i < 6; i++) {
-//     //     MPU[i] = Math.random() * 20 - 10;
-//     // }
-//     // for (i = 0; i < 2; i++) {
-//     //     ADS[i] = Math.random() * 12;
-//     // }
-//     // ADS[2] = Math.floor(Math.random() * 4096);
-//     // for (i = 0; i < 3; i++) {
-//     //     Sonar[i] = Math.floor(Math.random() * 10);
-//     // }
-//     const time = new Date();
-//     MPU[0] = 7*Math.cos(time.getTime());
-//     MPU[1] = 7*Math.sin(time.getTime());
-//     console.log("DATA UPDATE")}, 100);
+setInterval(function () {
+    //For random
+    for (i = 0; i < 6; i++) {
+        MPU[i] = Math.random() * 20 - 10;
+    }
+    for (i = 0; i < 2; i++) {
+        ADS[i] = Math.random() * 12;
+    }
+    ADS[2] = Math.floor(Math.random() * 4096);
+    for (i = 0; i < 3; i++) {
+        Sonar[i] = Math.floor(Math.random() * 10);
+    }
+    const time = new Date();
+    MPU[0] = 7*Math.cos(time.getTime());
+    MPU[1] = 7*Math.sin(time.getTime());
+    console.log("DATA UPDATE")}, 100);
